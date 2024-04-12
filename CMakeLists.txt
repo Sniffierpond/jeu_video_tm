@@ -6,4 +6,4 @@ endif()
 
 project(JeuTM VERSION 0.1 DESCRIPTION "Jeu bac-à-sable créé pour mon travail de maturité" LANGUAGES CXX)
 
-add_subdirectory(src/core)
+add_executable(jeu src/main.cpp)
