@@ -6,4 +6,10 @@ endif()
 
 project(JeuTM VERSION 0.1 DESCRIPTION "Jeu bac-à-sable créé pour mon travail de maturité" LANGUAGES CXX)
 
+add_subdirectory(extern/SFML)
+
 add_executable(jeu src/main.cpp)
+
+target_include_directories(jeu PUBLIC extern/SFML/include/SFML)
+
+target_link_libraries(jeu sfml-graphics sfml-audio)
