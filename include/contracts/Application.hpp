@@ -22,4 +22,9 @@ class Application {
     Change l'état du jeu.
     */
     virtual void changeState(GameState& state) = 0;
+
+    /*
+    Quitte l'application
+    */
+    virtual void exit() = 0;
 };
