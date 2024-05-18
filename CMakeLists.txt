@@ -4,12 +4,15 @@ if(${CMAKE_VERSION} VERSION_LESS 3.12)
     cmake_policy(VERSION ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION})
 endif()
 
-project(JeuTM VERSION 0.1 DESCRIPTION "Jeu bac-à-sable créé pour mon travail de maturité" LANGUAGES CXX)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-add_subdirectory(extern/SFML)
+set(SFML_STATIC_LIBRARIES TRUE)
+find_package(SFML 2.5.1 REQUIRED COMPONENTS audio graphics window system)
+
+project(JeuTM VERSION 0.1 DESCRIPTcION "Jeu bac-à-sable créé pour mon travail de maturité" LANGUAGES CXX)
 
 add_executable(jeu src/main.cpp)
 
-target_include_directories(jeu PUBLIC extern/SFML/include/SFML)
+target_include_directories(jeu PRIVATE "include" "lib")
 
-target_link_libraries(jeu sfml-graphics sfml-audio)
+target_link_libraries(jeu ${SFML_LIBRAIRIES})
