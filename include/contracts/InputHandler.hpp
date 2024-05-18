@@ -14,5 +14,5 @@ Gère la lecture des entrées de l'utilisateur qu'il peut ensuite envoyer au Con
 class InputHandler {
     public:
     virtual void setController(Controller& controller) = 0;
-    virtual void handlerInputs() = 0;
+    virtual void handleInputs() = 0;
 };
