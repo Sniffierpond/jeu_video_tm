@@ -15,7 +15,12 @@ Représente un "état" du jeu, par exemple lorsque le joueur est en train de jou
 class GameState {
     public:
     virtual void setController(Controller& controller) = 0;
-    virtual void changeState(GameState& state) = 0;
+
+    /*
+    Initialise les ressources utilisées par l'état du jeu.
+    */
+    virtual void start() = 0;
+    
     /*
     Si l'état est ou non actif
     */
@@ -38,4 +43,9 @@ class GameState {
     Si le jeu est ou non en pause
     */
     virtual bool paused() = 0;
+
+    /*
+    Arrête l'état du jeu et libère la mémoire
+    */
+    virtual void stop();
 };
