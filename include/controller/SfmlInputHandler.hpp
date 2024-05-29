@@ -16,7 +16,7 @@ class SfmlInputHandler: InputHandler
     sf::Window* window_;
     Controller* controller_;
     public:
-    SfmlInputHandler(sf::Window& window, Controller& controller);
+    SfmlInputHandler(sf::Window& window);
 
     void setController(Controller& controller) override;
     void handleInputs() override;

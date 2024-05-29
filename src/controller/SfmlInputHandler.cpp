@@ -8,8 +8,9 @@
 #include "../../include/controller/SfmlInputHandler.hpp"
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
+#include <exception>
 
-SfmlInputHandler::SfmlInputHandler(sf::Window& window, Controller& controller): window_(&window), controller_(&controller) {};
+SfmlInputHandler::SfmlInputHandler(sf::Window& window): window_(&window) {};
 
 void SfmlInputHandler::setController(Controller& controller) {
     controller_ = &controller;
@@ -17,6 +18,10 @@ void SfmlInputHandler::setController(Controller& controller) {
 
 void SfmlInputHandler::handleInputs() {
     sf::Event event;
+
+    if (controller_ == nullptr) {
+        throw std::logic_error("Controller reference not provided for SfmlInputHandler");
+    }
 
     while (window_->pollEvent(event)) {
         if (event.type == sf::Event::MouseButtonPressed) {
