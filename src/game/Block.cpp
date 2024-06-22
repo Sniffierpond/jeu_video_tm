@@ -1,6 +1,6 @@
 /*
     -------------------------
-    SimpleBlock.cpp
+    Block.cpp
     auteur: Jonathan Rochat
     -------------------------
 */

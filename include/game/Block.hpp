@@ -1,6 +1,6 @@
 /*
     -------------------------
-    BlockRegistry.hpp
+    Block.hpp
     auteur: Jonathan Rochat
     -------------------------
 */
