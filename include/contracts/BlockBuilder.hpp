@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "Block.hpp"
+#include "../game/Block.hpp"
 
 class BlockBuilder {
     public:
