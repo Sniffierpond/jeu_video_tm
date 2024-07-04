@@ -17,5 +17,5 @@ class BlockRegistry {
     std::map<std::string, BlockBuilder&> registry_;
     public:
     void registerBlock(std::string blockType, BlockBuilder& builder);
-    BlockBuilder& getBlockBuilder(std::string blockType);
+    BlockBuilder& getBlockBuilder(std::string blockType) const;
 };

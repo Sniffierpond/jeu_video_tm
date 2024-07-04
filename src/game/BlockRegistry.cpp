@@ -17,6 +17,6 @@ void BlockRegistry::registerBlock(std::string blockType, BlockBuilder& builder) 
     }
 }
 
-BlockBuilder& BlockRegistry::getBlockBuilder(std::string blockType) {
+BlockBuilder& BlockRegistry::getBlockBuilder(std::string blockType) const{
     return registry_.at(blockType);
 }
