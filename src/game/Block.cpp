@@ -14,5 +14,5 @@ std::string Block::getBlockType() {
 }
 
 sf::Texture& Block::getTexture() {
-    return texture_;
+    return *texture_;
 }
