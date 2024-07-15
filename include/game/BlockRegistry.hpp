@@ -9,13 +9,6 @@
 
 #include <map>
 #include "../contracts/BlockBuilder.hpp"
-/*
-Représente un registre
-*/
-class BlockRegistry {
-    private:
-    std::map<std::string, BlockBuilder&> registry_;
-    public:
-    void registerBlock(std::string blockType, BlockBuilder& builder);
-    BlockBuilder& getBlockBuilder(std::string blockType) const;
-};
+#include "../utils/Registry.hpp"
+
+using BlockRegistry = Registry<BlockBuilder>;
