@@ -8,13 +8,14 @@
 #pragma once
 
 #include <SFML/Graphics/Texture.hpp>
+#include "../contracts/Drawable.hpp"
 
-class Block {
+class Block: Drawable {
     private:
     std::string blockType_;
-    sf::Texture& texture_;
+    sf::Texture* texture_;
     public:
     Block(std::string blockType, sf::Texture& texture);
     std::string getBlockType();
-    sf::Texture& getTexture();
+    sf::Texture& getTexture() override;
 };
