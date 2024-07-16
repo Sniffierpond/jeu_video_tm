@@ -12,22 +12,32 @@
 #include <string>
 
 /*
-Représente un registre
+Représente un registre stockant des références sur des objets associées à des identifiants
+sous forme de chaîne de caractères
 */
 template <typename T>
 class Registry {
     private:
-    std::map<std::string, T&> registry_;
+    std::map<std::string, T> registry_;
     public:
-    void registerElement(std::string id, T& t) {
-        if (registry_.find(id) == registry_.end()) {
-            throw std::runtime_error("Error: the block cannot be registered because it already is.");
+    /*
+    Enregistre la copie d'un élément (t) à l'aide de son identifiant (id)
+    */
+    void registerElement(const std::string& id, T& t) {
+        if (registry_.find(id) != registry_.end()) {
+            throw std::runtime_error("Error: the element cannot be registered because it already is.");
         }
         else {
             registry_[id] = t;
         }
     }
-    T& get(std::string id) const {
+    /*
+    Récupère un élément à l'aide de son identifiant (id)
+    */
+    const T& get(const std::string& id) const {
+        if (registry_.find(id) == registry_.end()) {
+            throw std::runtime_error("Error: The element with the given id isn't registered");
+        }
         return registry_.at(id);
     }
 };
