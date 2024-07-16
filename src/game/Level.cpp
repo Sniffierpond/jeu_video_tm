@@ -35,7 +35,7 @@ Level::Level(const BlockRegistry& registry, BlockGrid grid): registry_(&registry
 }
 
 Block Level::getBlock(sf::Vector2i position) const {
-    return registry_->getBlockBuilder(blockTypesIds_.at(grid_.at(position.x, position.y))).build();
+    return registry_->get(blockTypesIds_.at(grid_.at(position.x, position.y))).build();
 }
 
 BlockGrid Level::getBlocks(sf::Vector2i position0, int width, int height) const {
