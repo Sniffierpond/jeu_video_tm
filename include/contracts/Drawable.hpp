@@ -8,7 +8,8 @@
 #pragma once
 
 #include <SFML/Graphics/Texture.hpp>
+#include <string>
 
 class Drawable {
-    virtual sf::Texture& getTexture() = 0;
+    virtual std::string getTextureId() = 0;
 };

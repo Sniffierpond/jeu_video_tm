@@ -10,12 +10,16 @@
 #include <SFML/Graphics/Texture.hpp>
 #include "../contracts/Drawable.hpp"
 
+class SimpleBlockBuilder;
+
 class Block: Drawable {
     private:
     std::string blockType_;
-    sf::Texture* texture_;
+    std::string textureId_;
+    Block(std::string blockType, std::string textureId);
+
+    friend SimpleBlockBuilder;    
     public:
-    Block(std::string blockType, sf::Texture& texture);
     std::string getBlockType();
-    sf::Texture& getTexture() override;
+    std::string getTextureId() override;
 };
