@@ -23,7 +23,7 @@ class Registry {
     /*
     Enregistre la copie d'un élément (t) à l'aide de son identifiant (id)
     */
-    void registerElement(const std::string& id, T& t) {
+    void registerElement(const std::string& id, const T& t) {
         if (registry_.find(id) != registry_.end()) {
             throw std::runtime_error("Error: the element cannot be registered because it already is.");
         }
