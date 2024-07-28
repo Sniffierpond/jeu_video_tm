@@ -1,6 +1,6 @@
 /*
     -------------------------
-    ExampleRenderer.hpp
+    TextureRegistry.hpp
     auteur: Jonathan Rochat
     -------------------------
 */
