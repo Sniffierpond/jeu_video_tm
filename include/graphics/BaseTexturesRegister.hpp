@@ -8,7 +8,6 @@
 #pragma once
 
 #include "../graphics/TextureRegistry.hpp"
-#include <vector>
 
 class BaseTexturesRegister {
     public:
