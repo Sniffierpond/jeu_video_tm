@@ -12,7 +12,7 @@
 #include "Speed.hpp"
 #include "Acceleration.hpp"
 
-class MovementHandler: Updatable {
+class MovementHandler: public Updatable {
     private:
     sf::Vector2f position_;
 
