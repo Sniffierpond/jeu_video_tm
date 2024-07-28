@@ -13,7 +13,7 @@
 /*
 Permet d'instancier des blocs considérés comme "simples".
 */
-class SimpleBlockBuilder: BlockBuilder {
+class SimpleBlockBuilder: public BlockBuilder {
     protected:
     std::string blockType_;
     public:
