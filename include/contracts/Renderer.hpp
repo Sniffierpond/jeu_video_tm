@@ -6,6 +6,7 @@
 */
 #pragma once
 
+#include <SFML/Graphics/Texture.hpp>
 class Viewable;
 
 /*
@@ -13,10 +14,8 @@ Représente un objet effectuant le rendu de quelque chose.
 */
 class Renderer {
     public:
-    virtual void setViewable(Viewable& viewable) = 0;
-
     /*
-    Effectue le rendu.
+    Retourne une texture contenant les éléments rendus.
     */
-    virtual void render() = 0;
+    virtual sf::Texture render() = 0;
 };
