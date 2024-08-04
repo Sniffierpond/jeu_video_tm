@@ -17,5 +17,5 @@ class Renderer {
     /*
     Retourne une texture contenant les éléments rendus.
     */
-    virtual sf::Texture render() = 0;
+    virtual sf::Texture render() const = 0;
 };
