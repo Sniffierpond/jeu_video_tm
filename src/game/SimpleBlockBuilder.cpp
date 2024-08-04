@@ -30,7 +30,7 @@ Block SimpleBlockBuilder::build() const {
     blockType_ == "base:tree_log") {
         textureId = blockType_;
     }
-    else {
+    else if (blockType_ != "base:air") {
         throw std::runtime_error("Unable to build a block with given type");
     }
 

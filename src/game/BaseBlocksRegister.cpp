@@ -11,6 +11,7 @@
 void BaseBlocksRegister::registerBlocks(BlockRegistry& registry) const {
     SimpleBlockBuilder builder;
 
+    registry.registerElement("base:air", builder.setBlockType("base:air"));
     registry.registerElement("base:bricks", builder.setBlockType("base:bricks"));
     registry.registerElement("base:dirt:1", builder.setBlockType("base:dirt:1"));
     registry.registerElement("base:dirt:2", builder.setBlockType("base:dirt:2"));
