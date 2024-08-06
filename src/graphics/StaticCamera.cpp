@@ -15,7 +15,7 @@ void StaticCamera::setPosition(sf::Vector2f position) {
     position_ = position;
 }
 
-sf::Vector2f StaticCamera::getPosition() {
+sf::Vector2f StaticCamera::getPosition() const {
     return position_;
 }
 
@@ -29,7 +29,7 @@ void StaticCamera::setWidth(float width) {
     }
 }
 
-float StaticCamera::getWidth() {
+float StaticCamera::getWidth() const {
     return width_;
 }
 
@@ -43,6 +43,6 @@ void StaticCamera::setHeight(float height) {
     }
 }
 
-float StaticCamera::getHeight() {
+float StaticCamera::getHeight() const {
     return height_;
 }

@@ -20,11 +20,11 @@ class StaticCamera: public Camera {
     StaticCamera(sf::Vector2f position, float width, float height);
 
     void setPosition(sf::Vector2f position);
-    sf::Vector2f getPosition() override;
+    sf::Vector2f getPosition() const override;
 
     void setWidth(float width);
-    float getWidth() override;
+    float getWidth() const override;
 
     void setHeight(float height);
-    float getHeight() override;
+    float getHeight() const override;
 };
