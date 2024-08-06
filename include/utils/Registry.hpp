@@ -7,10 +7,12 @@
 
 #pragma once
 
+#include <functional>
 #include <map>
 #include <stdexcept>
 #include <string>
 #include <memory>
+#include <optional>
 
 /*
 Représente un registre stockant des références sur des objets associées à des identifiants
@@ -37,10 +39,12 @@ class Registry {
     /*
     Récupère un élément à l'aide de son identifiant (id)
     */
-    const T1& get(const std::string& id) const {
+    std::optional<std::reference_wrapper<const T1>> get(const std::string& id) const {
         if (registry_.find(id) == registry_.end()) {
-            throw std::runtime_error("Error: The element with the given id isn't registered");
+            return std::nullopt;
         }
-        return *registry_.at(id);
+        else {
+            return std::make_optional<std::reference_wrapper<const T1>>(*registry_.at(id));
+        }
     }
 };
