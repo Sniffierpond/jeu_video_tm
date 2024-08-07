@@ -11,6 +11,7 @@
 #include "BlockRegistry.hpp"
 #include "BlockGrid.hpp"
 
+#include <SFML/Graphics/Rect.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <map>
 
@@ -26,7 +27,7 @@ class Level {
 
     Block getBlock(sf::Vector2i position) const;
     /*
-    Retourne une portion de la grille du niveau sous forme de rectangle en considérant position0 comme le point inférieur gauche.
+    Retourne une portion de la grille du niveau sous forme de rectangle.
     */
-    BlockGrid getBlocks(sf::Vector2i position0, int width, int height) const;
+    BlockGrid getBlocks(sf::IntRect rectangle) const;
 };
