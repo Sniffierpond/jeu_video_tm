@@ -36,7 +36,13 @@ sf::Texture BlockRenderer::render() const {
             if (block.getBlockType() == "base:air") {}
             else if (const auto& optional = textureRegistry_.get(block.getTextureId())) {
                 blockTexture = *optional;
-                texture.update(blockTexture, (x - area.left) * 16, (((area.height - 1 - y - area.top)) * 16));
+
+                if (blockTexture.getSize().x != 16 || blockTexture.getSize().y != 16 ) {
+                    throw std::runtime_error("Block renderer cannot handle textures whose size is not 16x16 pixels.");
+                }
+                else {
+                    texture.update(blockTexture, (x - area.left) * 16, (((area.height - 1 - y - area.top)) * 16));
+                }
             }
             else {
                 throw std::runtime_error("No texture registered with id " + block.getTextureId());
