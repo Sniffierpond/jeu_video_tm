@@ -41,7 +41,7 @@ sf::Vector2<Acceleration> MovementHandler::getAcceleration() const {
 }
 
 
-void MovementHandler::update(std::chrono::milliseconds timeDifference) {
+void MovementHandler::update(std::chrono::nanoseconds timeDifference) {
     //Pour x:
     speed_.x += acceleration_.x * timeDifference;
 

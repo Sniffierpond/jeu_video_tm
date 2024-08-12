@@ -32,5 +32,5 @@ class MovementHandler: public Updatable {
     void setAcceleration(sf::Vector2<Acceleration> acceleration);
     sf::Vector2<Acceleration> getAcceleration() const;
 
-    void update(std::chrono::milliseconds timeDifference) override;
+    void update(std::chrono::nanoseconds timeDifference) override;
 };

@@ -16,5 +16,5 @@ class Updatable {
     /*
     timeDifference: nombre de millisecondes écoulées depuis le dernier appel de la méthode
     */
-    virtual void update(std::chrono::milliseconds timeDifference) = 0;
+    virtual void update(std::chrono::nanoseconds timeDifference) = 0;
 };
