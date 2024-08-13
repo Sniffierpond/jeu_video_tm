@@ -21,8 +21,12 @@ class Controller {
     public:
     virtual void setInputHandler(InputHandler& inputHandler) = 0;
     virtual void setViewable(Viewable& viewable) = 0;
-    virtual void setGameState(GameState& gameState) = 0;
 
+    /*
+    Met uniquement à jour l'affichage.
+    */
+    virtual void refresh() = 0;
+    
     virtual void update() = 0;
     
     virtual void pressKey(sf::Keyboard::Key keyCode) = 0;
@@ -32,6 +36,8 @@ class Controller {
     virtual void rightClick(sf::Vector2f position) = 0;
 
     virtual void moveMouse(sf::Vector2f position) = 0;
+
+    virtual bool stopped() = 0;
 
     virtual void exit() = 0;
 };
