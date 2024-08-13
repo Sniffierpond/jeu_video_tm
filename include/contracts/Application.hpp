@@ -4,9 +4,11 @@
     auteur: Jonathan Rochat
     -------------------------
 */
+
 #pragma once
 
 #include "GameState.hpp"
+#include "../core/GameStateStack.hpp"
 
 /*
 Interface décrivant une application
@@ -18,10 +20,7 @@ class Application {
     */
     virtual int launch() = 0;
 
-    /*
-    Change l'état du jeu.
-    */
-    virtual void changeState(GameState& state) = 0;
+    virtual GameStateStack& gameStateStack() = 0;
 
     /*
     Quitte l'application
