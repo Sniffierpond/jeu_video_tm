@@ -7,14 +7,12 @@
 
 #pragma once
 
-#include "Controller.hpp"
 
 /*
 Représente un "état" du jeu, par exemple lorsque le joueur est en train de jouer, ou lorsqu'il a mis le jeu en pause.
 */
 class GameState {
     public:
-    virtual void setController(Controller& controller) = 0;
 
     /*
     Initialise les ressources utilisées par l'état du jeu.
@@ -45,7 +43,7 @@ class GameState {
     virtual bool paused() = 0;
 
     /*
-    Arrête l'état du jeu et libère la mémoire
+    Arrête l'état du jeu et libère la mémoire.
     */
     virtual void stop();
 };
