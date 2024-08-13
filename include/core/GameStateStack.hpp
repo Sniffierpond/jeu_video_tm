@@ -27,5 +27,7 @@ class GameStateStack {
     GameState& at(int i);
     const GameState& at(int i) const;
 
+    int size() const;
+
     void update();
 };

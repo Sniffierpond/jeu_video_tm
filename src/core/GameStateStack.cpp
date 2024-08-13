@@ -16,7 +16,9 @@ const GameState& GameStateStack::at(int i) const {
     return *stack_.at(i);
 }
 
-
+int GameStateStack::size() const {
+    return stack_.size();
+}
 void GameStateStack::update() {
     for (auto iterator = stack_.begin(); iterator != stack_.end(); ++iterator) {
         if (!(*iterator)->active()) {
