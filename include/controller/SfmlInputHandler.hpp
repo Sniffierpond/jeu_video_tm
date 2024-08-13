@@ -10,7 +10,7 @@
 #include "../contracts/Controller.hpp"
 #include <SFML/Window.hpp>
 
-class SfmlInputHandler: InputHandler
+class SfmlInputHandler: public InputHandler
 {
     private:
     sf::Window* window_;
