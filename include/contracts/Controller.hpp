@@ -12,8 +12,6 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/System/Vector2.hpp>
 
-class GameState;
-
 /*
 Représente un controller chargé de faire le lien entre l'affichage d'un état de l'application, la logique de cet état et les actions de l'utilisateur.
 */
@@ -37,7 +35,7 @@ class Controller {
 
     virtual void moveMouse(sf::Vector2f position) = 0;
 
-    virtual bool stopped() = 0;
+    virtual bool stopped() const = 0;
 
     virtual void exit() = 0;
 };
