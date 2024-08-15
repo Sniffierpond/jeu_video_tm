@@ -18,7 +18,7 @@ class GameApplication: public Application {
 
     public:
     GameApplication(const cxxopts::ParseResult& options);
-    int launch() override;
+    int launch() noexcept override;
 
     GameStateStack& gameStateStack() override;
 
