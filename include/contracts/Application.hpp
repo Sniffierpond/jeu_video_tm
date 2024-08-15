@@ -18,7 +18,7 @@ class Application {
     /*
     Lance l'application et retourne un code indiquant s'il y a eu des erreurs durant l'exécution.
     */
-    virtual int launch() = 0;
+    virtual int launch() noexcept = 0;
 
     virtual GameStateStack& gameStateStack() = 0;
 
