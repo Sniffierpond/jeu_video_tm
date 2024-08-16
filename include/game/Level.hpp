@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "../utils/Expandable2DArray.hpp"
+#include "../utils/Array2.hpp"
 #include "BlockRegistry.hpp"
 #include "BlockGrid.hpp"
 
@@ -17,7 +17,7 @@
 
 class Level {
     protected:
-    Expandable2DArray<int> grid_;
+    Array2<int> grid_;
     
     const BlockRegistry* registry_;
 

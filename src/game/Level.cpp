@@ -7,7 +7,7 @@
 
 #include "../../include/game/Level.hpp"
 
-Level::Level(const BlockRegistry& registry, BlockGrid grid): registry_(&registry) {
+Level::Level(const BlockRegistry& registry, BlockGrid grid): registry_(&registry), grid_(sf::Vector2i(grid.getWidth() / 2, grid.getHeight() / 2), grid.getWidth(), grid.getHeight(), 0) {
     blockTypesIds_[0] = "base:air";
 
     for (int x = 0; x < grid.getWidth(); ++x) {
@@ -29,22 +29,22 @@ Level::Level(const BlockRegistry& registry, BlockGrid grid): registry_(&registry
                 blockTypesIds_[intId] = stringId;
             }
 
-            grid_.set(intId, x, y, 0);
+            grid_.at(x, y) = intId;
         }
     }
 }
 
 Block Level::getBlock(sf::Vector2i position) const {
-    return registry_->get(blockTypesIds_.at(grid_.at(position.x, position.y))).build();
+    return registry_->get(blockTypesIds_.at(grid_.at(position.x, position.y)))->get().build();
 }
 
-BlockGrid Level::getBlocks(sf::Vector2i position0, int width, int height) const {
+BlockGrid Level::getBlocks(sf::IntRect rectangle) const {
     std::vector<std::vector<Block>> blocks;
 
-    for (int y = position0.y; y < position0.y + height; ++y) {
+    for (int y = rectangle.top; y < rectangle.top + rectangle.height; ++y) {
         blocks.emplace_back();
 
-        for (int x = position0.x; x < position0.x + width; ++x) {
+        for (int x = rectangle.left; x < rectangle.left + rectangle.width; ++x) {
             blocks.at(y).push_back(getBlock(sf::Vector2i(x, y)));
         }
     }
