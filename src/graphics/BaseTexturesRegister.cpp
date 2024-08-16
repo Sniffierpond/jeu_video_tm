@@ -8,7 +8,7 @@
 #include "../../include/graphics/BaseTexturesRegister.hpp"
 #include "../../include/persistence/TextureLoader.hpp"
 
-void BaseTexturesRegister::registerTextures(TextureRegistry& registry) const {
+void BaseTexturesRegister::registerTextures(TextureRegistry& registry) {
     TextureLoader loader;
 
     registry.registerElement("base:bricks", loader.load("resources/bricks.png"));
