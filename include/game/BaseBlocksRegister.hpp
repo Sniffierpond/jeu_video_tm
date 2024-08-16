@@ -11,5 +11,5 @@
 
 class BaseBlocksRegister {
     public:
-    void registerBlocks(BlockRegistry& registry) const;
+    static void registerBlocks(BlockRegistry& registry);
 };

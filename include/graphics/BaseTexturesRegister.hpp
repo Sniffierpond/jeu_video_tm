@@ -11,5 +11,5 @@
 
 class BaseTexturesRegister {
     public:
-    void registerTextures(TextureRegistry& registry) const;
+    static void registerTextures(TextureRegistry& registry);
 };
