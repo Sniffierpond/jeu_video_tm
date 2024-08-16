@@ -8,7 +8,7 @@
 #include "../../include/game/BaseBlocksRegister.hpp"
 #include "../../include/game/SimpleBlockBuilder.hpp"
 
-void BaseBlocksRegister::registerBlocks(BlockRegistry& registry) const {
+void BaseBlocksRegister::registerBlocks(BlockRegistry& registry) {
     SimpleBlockBuilder builder;
 
     registry.registerElement("base:air", builder.setBlockType("base:air"));
