@@ -13,10 +13,10 @@ template <typename T>
 class Array2 {
     private:
     std::vector<std::vector<T>> vector_;
-    sf::Vector2f origin_;
+    sf::Vector2i origin_;
 
     public:
-    Array2(sf::Vector2f origin, unsigned int width, unsigned int height, T fill = T()): origin_(origin) {
+    Array2(sf::Vector2i origin, unsigned int width, unsigned int height, T fill = T()): origin_(origin) {
         vector_.resize(height);
         
         for (auto element : vector_) {
