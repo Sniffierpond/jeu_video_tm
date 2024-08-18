@@ -14,25 +14,28 @@ Level::Level(const BlockRegistry& registry, BlockGrid grid): registry_(&registry
         for (int y = 0; y < grid.getHeight(); ++y) {
             std::string stringId = grid.getBlock(sf::Vector2i(x, y)).getBlockType();
 
-            int intId = blockTypesIds_.size() - 1;
+            int intId;
             bool registered = false;
 
-            for (auto it = blockTypesIds_.begin(); it != blockTypesIds_.end(); ++it) {
-                if (it->second == stringId) {
+            for (auto& id: blockTypesIds_) {
+                if (id == stringId) {
                     registered = true;
-                    intId = it->first;
                     break;
                 }
+                ++intId;
             }
 
             if (!registered) {
-                blockTypesIds_[intId] = stringId;
+                blockTypesIds_.push_back(stringId);
             }
 
             grid_.at(x, y) = intId;
         }
     }
 }
+
+Level::Level(const BlockRegistry& registry, const std::vector<std::vector<unsigned int>> blocks, sf::Vector2i origin, const std::vector<std::string> blockTypesIds): registry_(&registry), grid_(blocks, origin), blockTypesIds_(blockTypesIds) {}
+
 
 Block Level::getBlock(sf::Vector2i position) const {
     return registry_->get(blockTypesIds_.at(grid_.at(position.x, position.y)))->get().build();

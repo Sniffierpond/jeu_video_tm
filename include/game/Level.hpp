@@ -17,13 +17,14 @@
 
 class Level {
     protected:
-    Array2<int> grid_;
+    Array2<unsigned int> grid_;
     
     const BlockRegistry* registry_;
 
-    std::map<int, std::string> blockTypesIds_;
+    std::vector<std::string> blockTypesIds_;
     public:
     Level(const BlockRegistry& registry, BlockGrid grid);
+    Level(const BlockRegistry& registry, const std::vector<std::vector<unsigned int>> blocks, sf::Vector2i origin, const std::vector<std::string> blockTypesIds);
 
     Block getBlock(sf::Vector2i position) const;
     /*
