@@ -11,7 +11,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
-class View: Viewable {
+class View: public Viewable {
     private:
     sf::RenderTarget* renderTarget_;
 
