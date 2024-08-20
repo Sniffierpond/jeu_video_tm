@@ -20,6 +20,7 @@ PlayingGameState::PlayingGameState(const TextureRegistry& textureRegistry, const
 {}
 
 void PlayingGameState::start() {
+    std::cout << "PlayingGameState démarré." << std::endl;
     active_ = true;
 }
 
@@ -45,10 +46,12 @@ void PlayingGameState::update() {
 }
 
 void PlayingGameState::pause() {
+    std::cout << "PlayingGameState mis en pause" << std::endl;
     paused_ = true;
 }
 
 void PlayingGameState::resume() {
+    std::cout << "Reprise de l'exécution de PlayingGameState" << std::endl;
     paused_ = false;
 }
 
@@ -59,5 +62,6 @@ bool PlayingGameState::paused() {
 
 
 void PlayingGameState::stop() {
+    std::cout << "PlayingGameState arrêté" << std::endl;
     active_ = false;
 }
