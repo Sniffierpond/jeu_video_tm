@@ -15,7 +15,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
-class PlayingGameState: GameState {
+class PlayingGameState: public GameState {
     private:
     MovableCamera camera_;
     CameraController controller_;
