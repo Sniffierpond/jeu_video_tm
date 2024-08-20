@@ -17,7 +17,6 @@ class BlockGrid {
     private:
     std::vector<std::vector<Block>> blocks_;
     public:
-    BlockGrid() = default;
     BlockGrid(const std::vector<std::vector<Block>>& blocks);
 
     Block getBlock(sf::Vector2i position) const;
@@ -25,6 +24,4 @@ class BlockGrid {
 
     int getWidth() const;
     int getHeight() const;
-
-    ~BlockGrid();
 };
