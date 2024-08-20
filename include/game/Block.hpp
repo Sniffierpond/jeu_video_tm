@@ -12,7 +12,7 @@
 
 class SimpleBlockBuilder;
 
-class Block: Drawable {
+class Block: public Drawable {
     private:
     std::string blockType_;
     std::string textureId_;
