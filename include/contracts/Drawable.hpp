@@ -11,5 +11,8 @@
 #include <string>
 
 class Drawable {
+    public:
     virtual std::string getTextureId() = 0;
+
+    virtual ~Drawable() = 0;
 };

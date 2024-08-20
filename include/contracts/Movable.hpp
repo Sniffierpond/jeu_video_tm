@@ -13,4 +13,6 @@
 class Movable {
     public:
     virtual MovementHandler& movementHandler() = 0;
+
+    virtual ~Movable() = 0;
 };

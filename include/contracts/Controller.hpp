@@ -38,4 +38,6 @@ class Controller {
     virtual bool stopped() const = 0;
 
     virtual void exit() = 0;
+
+    virtual ~Controller() = 0;
 };

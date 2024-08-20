@@ -28,4 +28,6 @@ class Viewable {
     Retourne la position de la zone graphique du Viewable relativement au coin supérieur gauche de la fenêtre.
     */
     virtual sf::Vector2i getWindowPos0() = 0;
+
+    virtual ~Viewable() = 0;
 };

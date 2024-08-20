@@ -15,4 +15,6 @@ class InputHandler {
     public:
     virtual void setController(Controller& controller) = 0;
     virtual void handleInputs() = 0;
+
+    virtual ~InputHandler() = 0;
 };

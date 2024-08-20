@@ -26,4 +26,6 @@ class LevelInterface {
     virtual Player& getPlayer() = 0;
 
     virtual unsigned int getLevelId();
+
+    virtual ~LevelInterface() = 0;
 };

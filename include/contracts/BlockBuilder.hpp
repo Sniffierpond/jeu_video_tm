@@ -12,4 +12,6 @@
 class BlockBuilder {
     public:
     virtual Block build() const = 0 ;
+
+    virtual ~BlockBuilder() = 0;
 };

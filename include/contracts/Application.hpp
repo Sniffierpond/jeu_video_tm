@@ -26,4 +26,6 @@ class Application {
     Quitte l'application
     */
     virtual void exit() = 0;
+
+    virtual ~Application() = 0;
 };

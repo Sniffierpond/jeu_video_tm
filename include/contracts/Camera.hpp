@@ -23,4 +23,6 @@ class Camera  {
     /*Retourne la largeur du "rectangle" représentant le champs de vision
     de la caméra.*/
     virtual float getHeight() const = 0;
+
+    virtual ~Camera() = 0;
 };
