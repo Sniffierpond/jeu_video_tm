@@ -22,7 +22,8 @@ class PlayingGameState: public GameState {
     View viewable_;
     LevelRenderer renderer_;
     SfmlInputHandler inputHandler_;
-    const Level& level_;
+    
+    Level level_;
 
     bool active_ = false;
     bool paused_ = false;
