@@ -1,6 +1,6 @@
 /*
     -------------------------
-    Movable.hpp
+    Updatable.hpp
     auteur: Jonathan Rochat
     -------------------------
 */
