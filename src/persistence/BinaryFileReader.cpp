@@ -13,11 +13,9 @@ std::string BinaryFileReader::readElement<std::string>() {
     std::string string;
 
     char c;
-    do {
-        c = readElement<char>();
+    while ((c = readElement<char>()) != '\0') {
         string += c;
     }
-    while (c != '\0');
 
     return string;
 }
