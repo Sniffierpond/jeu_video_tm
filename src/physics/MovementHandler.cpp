@@ -9,6 +9,9 @@
 #include <SFML/System/Vector2.hpp>
 #include <chrono>
 
+MovementHandler::MovementHandler(): speed_(0.0_bps, 0.0_bps), acceleration_(0.0_bps2, 0.0_bps2) {}
+
+
 sf::Vector2f MovementHandler::getPosition() const {
     return position_;
 }

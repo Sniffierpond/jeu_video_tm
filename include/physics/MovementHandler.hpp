@@ -21,6 +21,8 @@ class MovementHandler: public Updatable {
     sf::Vector2<Acceleration> acceleration_;
 
     public:
+    MovementHandler();
+
     sf::Vector2f getPosition() const;
     void setPosition(sf::Vector2f position);
 
