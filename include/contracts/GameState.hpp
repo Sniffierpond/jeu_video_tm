@@ -45,7 +45,7 @@ class GameState {
     /*
     Arrête l'état du jeu et libère la mémoire.
     */
-    virtual void stop();
+    virtual void stop() = 0;
 
     virtual ~GameState() = 0;
 };
