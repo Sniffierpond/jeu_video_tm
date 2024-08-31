@@ -17,13 +17,13 @@
 
 class PlayingGameState: public GameState {
     private:
-    MovableCamera camera_;
-    CameraController controller_;
-    View viewable_;
-    LevelRenderer renderer_;
-    SfmlInputHandler inputHandler_;
-    
     Level level_;
+
+    MovableCamera camera_;
+    LevelRenderer renderer_;
+    View viewable_;
+    SfmlInputHandler inputHandler_; 
+    CameraController controller_;
 
     bool active_ = false;
     bool paused_ = false;
