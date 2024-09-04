@@ -33,3 +33,7 @@ std::string Animation::frame(std::chrono::nanoseconds timeElapsed) const {
 unsigned int Animation::length() const {
     return frames_.size();
 }
+
+std::chrono::nanoseconds Animation::duration() const {
+    return duration_;
+}

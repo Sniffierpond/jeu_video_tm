@@ -27,4 +27,5 @@ class Animation {
     std::string frame(std::chrono::nanoseconds timeElapsed) const;
 
     unsigned int length() const;
+    std::chrono::nanoseconds duration() const;
 };
