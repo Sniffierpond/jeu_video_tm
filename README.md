@@ -10,5 +10,3 @@ Le projet est composé des modules suivants:
 - **persistence**: module chargé des fonctionnalités liées à la persistance des informations du jeu
 - **audio**: Le module qui gère le son.
 - **game**: partie de l'application qui effectue les calculs relatifs aux modes de jeu et décrivant les différents élements de mon jeu
-## License
-Copyright (C) 2024 Jonathan Rochat - Tous Droits Réservés.
