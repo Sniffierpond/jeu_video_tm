@@ -6,7 +6,7 @@
     Fichier contenant la fonction main.
 */
 
-#include <cxxopts.hpp>
+#include "../include/cxxopts.hpp"
 #include "../include/core/GameApplication.hpp"
 #include <cstdint>
 #include <cstdlib>
