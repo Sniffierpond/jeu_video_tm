@@ -18,6 +18,10 @@ class MovableCamera: public Movable, public Camera {
     float height_;
 
     public:
+    /*
+    Note le vecteur position représente les coordonnées du coin supérieur gauche
+    si on considère que les "y" descendent et que les "x" vont à gauche.
+    */
     MovableCamera(sf::Vector2f position, float width, float height);
 
     sf::Vector2f getPosition() const override;
