@@ -9,6 +9,7 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <vector>
+
 template <typename T>
 class Array2 {
     private:
@@ -26,13 +27,25 @@ class Array2 {
         }
     }
 
-    Array2(const std::vector<std::vector<T>>& array, sf::Vector2i origin): array_(array), origin_(origin) {}
-
-    T& at(int x, int y) {
-        return array_.at(origin_.y + y).at(origin_.x + x);
+    Array2(const std::vector<std::vector<T>>& array, sf::Vector2i origin): origin_(origin) {
+        array_.resize(array.size());
+        
+        for (int j = 0; j < array.size(); ++j) {
+            for (int i = 0; i < array.at(j).size(); ++i) {
+                array_.at(j).push_back(array.at(j).at(i));
+            }
+        }
     }
 
-    const T& at(int x, int y) const {
-        return at(x, y);
+    Array2(Array2&& other): array_(std::move(other.array_)), origin_(std::move(other.origin_)) {}
+
+    Array2(const Array2& other) = delete;
+    
+    void set(int x, int y, T id) {
+        array_.at(origin_.y + y).at(origin_.x + x) = id; 
+    }
+
+    T at(int x, int y) const {
+        return array_.at(origin_.y + y).at(origin_.x + x);
     }
 };
