@@ -29,7 +29,7 @@ class PlayingGameState: public GameState {
     bool paused_ = false;
     
     public:
-    PlayingGameState(const TextureRegistry& textureRegistry, const Level& level, sf::RenderWindow& window);
+    PlayingGameState(const TextureRegistry& textureRegistry, Level&& level, sf::RenderWindow& window);
 
     void start() override;
 

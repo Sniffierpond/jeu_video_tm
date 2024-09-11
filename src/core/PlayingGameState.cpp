@@ -10,13 +10,13 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Vector2.hpp>
 
-PlayingGameState::PlayingGameState(const TextureRegistry& textureRegistry, const Level& level, sf::RenderWindow& window): 
-    level_(level),
-    camera_(sf::Vector2f(0, 0),16, 9), 
-    renderer_(level, camera_, textureRegistry),
+PlayingGameState::PlayingGameState(const TextureRegistry& textureRegistry, Level&& level, sf::RenderWindow& window): 
+    level_(std::move(level)),   //Transfert du ownership
+    camera_(sf::Vector2f(0, 2),2, 2), 
+    renderer_(&level_, camera_, textureRegistry),
     viewable_(window, renderer_, window.getSize().x, window.getSize().y, sf::Vector2i(0, 0)),
     inputHandler_(window),
-    controller_(camera_, inputHandler_, viewable_)
+    controller_(&camera_, inputHandler_, viewable_)
 {}
 
 void PlayingGameState::start() {
