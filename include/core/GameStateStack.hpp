@@ -16,12 +16,12 @@ Classe gérant les différents états du jeu et retirant automatiquement les ét
 */
 class GameStateStack {
     private:
-    std::vector<std::unique_ptr<GameState>> stack_;
+    std::vector<std::shared_ptr<GameState>> stack_;
 
     public:
     template <typename T>
-    void push(const T& state) {
-        stack_.push_back(std::make_unique<T>(state));
+    void push(const std::shared_ptr<T> state) {
+        stack_.push_back(state);
     }
 
     GameState& at(int i);
