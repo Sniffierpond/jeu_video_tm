@@ -72,18 +72,20 @@ void GameApplication::init() {
     auto result = loader.load();
     auto intArray = result.toIntArray();
 
-    Level level(blockRegistry_, intArray, sf::Vector2i(intArray.front().size(), intArray.size() / 2), result.blocksNumericIds());
+    auto vecteur = sf::Vector2i((intArray.front().size() - 1) / 2, 0);
 
     if (fullscreen_)
         window_.create(sf::VideoMode::getFullscreenModes()[0], "Jeu TM", sf::Style::Fullscreen);
     else
         window_.create(sf::VideoMode(windowWidth_, windowHeight_), "JeuTM");
     
-    stack_.push(PlayingGameState(textureRegistry_, level, window_));
+    Level level(blockRegistry_, intArray, vecteur, result.blocksNumericIds());
+
+    stack_.push(std::make_shared<PlayingGameState>(textureRegistry_, std::move(level), window_));
     stack_.at(stack_.size() - 1).start();
 
     auto end = clock.now();
-    std::cout << "Terminé (" << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms)" << std::endl;
+    std::cout << "Terminé (" << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms)." << std::endl;
 
     initialised_ = true;
 }
