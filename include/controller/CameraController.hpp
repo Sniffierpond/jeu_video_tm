@@ -23,7 +23,7 @@ class CameraController: Controller {
     std::chrono::time_point<std::chrono::steady_clock> start_;
 
     public:
-    CameraController(MovableCamera& camera, InputHandler& inputHandler, Viewable& viewable);
+    CameraController(MovableCamera* camera, InputHandler& inputHandler, Viewable& viewable);
 
     void setInputHandler(InputHandler& inputHandler) override;
     void setViewable(Viewable& viewable) override;
