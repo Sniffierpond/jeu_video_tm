@@ -24,7 +24,8 @@ class Level {
     std::vector<std::string> blockTypesIds_;
     public:
     Level(const BlockRegistry& registry, BlockGrid grid);
-    Level(const BlockRegistry& registry, const std::vector<std::vector<unsigned int>> blocks, sf::Vector2i origin, const std::vector<std::string> blockTypesIds);
+    Level(const BlockRegistry& registry, const std::vector<std::vector<unsigned int>>& blocks, sf::Vector2i origin, const std::vector<std::string> blockTypesIds);
+    Level(Level&& other);
 
     Block getBlock(sf::Vector2i position) const;
     /*

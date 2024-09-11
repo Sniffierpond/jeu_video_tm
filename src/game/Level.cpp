@@ -29,13 +29,14 @@ Level::Level(const BlockRegistry& registry, BlockGrid grid): registry_(&registry
                 blockTypesIds_.push_back(stringId);
             }
 
-            grid_.at(x, y) = intId;
+            grid_.set(x, y, intId);
         }
     }
 }
 
-Level::Level(const BlockRegistry& registry, const std::vector<std::vector<unsigned int>> blocks, sf::Vector2i origin, const std::vector<std::string> blockTypesIds): registry_(&registry), grid_(blocks, origin), blockTypesIds_(blockTypesIds) {}
+Level::Level(const BlockRegistry& registry, const std::vector<std::vector<unsigned int>>& blocks, sf::Vector2i origin, const std::vector<std::string> blockTypesIds): registry_(&registry), grid_(blocks, origin), blockTypesIds_(blockTypesIds) {}
 
+Level::Level(Level&& other): grid_(std::move(other.grid_)), registry_(other.registry_), blockTypesIds_(std::move(other.blockTypesIds_)) {}
 
 Block Level::getBlock(sf::Vector2i position) const {
     return registry_->get(blockTypesIds_.at(grid_.at(position.x, position.y)))->get().build();
@@ -44,10 +45,10 @@ Block Level::getBlock(sf::Vector2i position) const {
 BlockGrid Level::getBlocks(sf::IntRect rectangle) const {
     std::vector<std::vector<Block>> blocks;
 
-    for (int y = rectangle.top; y < rectangle.top + rectangle.height; ++y) {
+    for (int y = 0; y < rectangle.height; ++y) {
         blocks.emplace_back();
 
-        for (int x = rectangle.left; x < rectangle.left + rectangle.width; ++x) {
+        for (int x = 0; x < rectangle.width; ++x) {
             blocks.at(y).push_back(getBlock(sf::Vector2i(x, y)));
         }
     }
