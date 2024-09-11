@@ -9,7 +9,7 @@
 #include "../../include/contracts/GameState.hpp"
 #include <SFML/Window/Keyboard.hpp>
 
-CameraController::CameraController(MovableCamera& camera, InputHandler& inputHandler, Viewable& viewable): camera_(&camera), inputHandler_(&inputHandler), viewable_(&viewable) {
+CameraController::CameraController(MovableCamera* camera, InputHandler& inputHandler, Viewable& viewable): camera_(camera), inputHandler_(&inputHandler), viewable_(&viewable) {
     start_ = clock_.now();
     inputHandler_->setController(*this);
 }
@@ -37,10 +37,7 @@ void CameraController::update() {
         auto timeDiff = clock_.now() - start_;
         start_ = clock_.now();
 
-        std::cout << &camera_ << std::endl;
-        auto a = *camera_;
         camera_->movementHandler().update(timeDiff);
-        
         inputHandler_->handleInputs();
 
         refresh();
