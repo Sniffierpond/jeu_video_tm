@@ -1,5 +1,5 @@
 
-set(SRC_FILES TextureLoader.cpp BlockGridLoader.cpp BinaryFileReader.cpp)
+set(SRC_FILES TextureLoader.cpp BlockGridLoader.cpp BinaryFileReader.cpp BinaryFileWriter.cpp)
 
 add_library(persistence ${SRC_FILES})
 
