@@ -10,3 +10,5 @@ Le projet est composé des modules suivants:
 - **persistence**: module chargé des fonctionnalités liées à la persistance des informations du jeu
 - **audio**: Le module qui gère le son.
 - **game**: partie de l'application qui effectue les calculs relatifs aux modes de jeu et décrivant les différents élements de mon jeu
+## Exécuter le jeu
+La compilation produit un exécutable *jeu* qui peut être exécuté en ligne de commande avec comme argument le chemin d'un fichier au format *blockgrid* comme celui se trouvant dans les ressources du projet.
