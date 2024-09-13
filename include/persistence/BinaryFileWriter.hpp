@@ -43,7 +43,7 @@ class BinaryFileWriter {
 
     template<typename T>
     void write2DElementArray(const std::vector<std::vector<T>>& array) {
-        writeElement<std::uint32_t>(array.front().size);
+        writeElement<std::uint32_t>(array.front().size());
         writeElement<std::uint32_t>(array.size());
 
         for (const auto& row: array) {
