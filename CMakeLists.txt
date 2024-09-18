@@ -20,6 +20,7 @@ add_subdirectory(src/persistence)
 add_subdirectory(src/physics)
 
 add_executable(jeu src/main.cpp)
+add_executable(editeur src/levelEditor.cpp)
 
 install(DIRECTORY resources DESTINATION build/bin/resources)
 target_include_directories(jeu PRIVATE "include" "lib")
@@ -35,6 +36,8 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
 endif()
 
 target_link_libraries(jeu PRIVATE contracts controller core game graphics persistence physics sfml-graphics)
+target_link_libraries(editeur persistence sfml-graphics)
+
 target_compile_features(jeu PRIVATE cxx_std_20)
 
 if(WIN32)
