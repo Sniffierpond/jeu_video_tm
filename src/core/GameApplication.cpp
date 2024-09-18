@@ -38,7 +38,7 @@ int GameApplication::launch() noexcept {
                 std::this_thread::sleep_for(std::chrono::seconds(1) / 1.0 / fps_ - (clock.now() - start));
                 continue;
             }
-      
+            window_.clear();
             stack_.update();
             window_.display();
 
@@ -78,10 +78,8 @@ void GameApplication::init() {
         window_.create(sf::VideoMode::getFullscreenModes()[0], "Jeu TM", sf::Style::Fullscreen);
     else
         window_.create(sf::VideoMode(windowWidth_, windowHeight_), "JeuTM");
-    
-    Level level(blockRegistry_, intArray, vecteur, result.blocksNumericIds());
 
-    stack_.push(std::make_shared<PlayingGameState>(textureRegistry_, std::move(level), window_));
+    stack_.push(std::make_shared<PlayingGameState>(textureRegistry_, result.toBlockGrid(blockRegistry_), window_));
     stack_.at(stack_.size() - 1).start();
 
     auto end = clock.now();

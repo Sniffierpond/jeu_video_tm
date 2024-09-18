@@ -6,14 +6,15 @@
 */
 
 #include "../../include/core/PlayingGameState.hpp"
+#include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Vector2.hpp>
 
-PlayingGameState::PlayingGameState(const TextureRegistry& textureRegistry, Level&& level, sf::RenderWindow& window): 
-    level_(std::move(level)),   //Transfert du ownership
-    camera_(sf::Vector2f(0, 2),2, 2), 
-    renderer_(&level_, camera_, textureRegistry),
+PlayingGameState::PlayingGameState(const TextureRegistry& textureRegistry, const BlockGrid& blockGrid, sf::RenderWindow& window): 
+    grid_(blockGrid),   //Transfert du ownership
+    camera_(sf::Vector2f(0, 0),2, 2), //La caméra n'est pas utilisée
+    renderer_(grid_, sf::FloatRect(0, 0, blockGrid.getWidth(), blockGrid.getHeight()), textureRegistry),
     viewable_(window, renderer_, window.getSize().x, window.getSize().y, sf::Vector2i(0, 0)),
     inputHandler_(window),
     controller_(&camera_, inputHandler_, viewable_)
