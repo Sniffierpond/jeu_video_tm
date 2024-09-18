@@ -38,7 +38,7 @@ int GameApplication::launch() noexcept {
                 std::this_thread::sleep_for(std::chrono::seconds(1) / 1.0 / fps_ - (clock.now() - start));
                 continue;
             }
-            window_.clear();
+            window_.clear(sf::Color(136, 205, 235));
             stack_.update();
             window_.display();
 
