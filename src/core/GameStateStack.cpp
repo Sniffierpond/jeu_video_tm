@@ -20,12 +20,14 @@ int GameStateStack::size() const {
     return stack_.size();
 }
 void GameStateStack::update() {
-    for (auto iterator = stack_.begin(); iterator != stack_.end(); ++iterator) {
-        if (!(*iterator)->active()) {
-            stack_.erase(iterator);
-        }
-        else {
-            (*iterator)->update();
+    if (!stack_.empty()) {
+        for (auto iterator = stack_.begin(); iterator != stack_.end(); ++iterator) {
+            if (!(*iterator)->active()) {
+                stack_.erase(iterator);
+            }
+            else {
+                (*iterator)->update();
+            }
         }
     }
 }
