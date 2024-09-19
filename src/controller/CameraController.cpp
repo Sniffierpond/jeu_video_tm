@@ -47,31 +47,31 @@ void CameraController::update() {
 
 void CameraController::pressKey(sf::Keyboard::Key keyCode) {
     if (keyCode == sf::Keyboard::W || keyCode == sf::Keyboard::Up) {
-        camera_->movementHandler().addSpeed(sf::Vector2<Speed>(0.0_bps, 2.0_bps));
+        camera_->movementHandler().setSpeed(sf::Vector2<Speed>(0.0_bps, 4.0_bps));
     }
     else if (keyCode == sf::Keyboard::S || keyCode == sf::Keyboard::Down) {
-        camera_->movementHandler().addSpeed(sf::Vector2<Speed>(0.0_bps, -2.0_bps));
+        camera_->movementHandler().setSpeed(sf::Vector2<Speed>(0.0_bps, -4.0_bps));
     }
     else if (keyCode == sf::Keyboard::D || keyCode == sf::Keyboard::Right) {
-        camera_->movementHandler().addSpeed(sf::Vector2<Speed>(2.0_bps, 0.0_bps));
+        camera_->movementHandler().setSpeed(sf::Vector2<Speed>(4.0_bps, 0.0_bps));
     }
     else if (keyCode == sf::Keyboard::A || keyCode == sf::Keyboard::Left) {
-        camera_->movementHandler().addSpeed(sf::Vector2<Speed>(-2.0_bps, 0.0_bps));
+        camera_->movementHandler().setSpeed(sf::Vector2<Speed>(-4.0_bps, 0.0_bps));
     }
 }
 
 void CameraController::releaseKey(sf::Keyboard::Key keyCode) {
     if (keyCode == sf::Keyboard::W || keyCode == sf::Keyboard::Up) {
-        camera_->movementHandler().addSpeed(sf::Vector2<Speed>(0.0_bps, -2.0_bps));
+        camera_->movementHandler().setSpeed(sf::Vector2<Speed>(0.0_bps, 0.0_bps));
     }
     else if (keyCode == sf::Keyboard::S || keyCode == sf::Keyboard::Down) {
-        camera_->movementHandler().addSpeed(sf::Vector2<Speed>(0.0_bps, 2.0_bps));
+        camera_->movementHandler().setSpeed(sf::Vector2<Speed>(0.0_bps, 0.0_bps));
     }
     else if (keyCode == sf::Keyboard::D || keyCode == sf::Keyboard::Right) {
-        camera_->movementHandler().addSpeed(sf::Vector2<Speed>(-2.0_bps, 0.0_bps));
+        camera_->movementHandler().setSpeed(sf::Vector2<Speed>(0.0_bps, 0.0_bps));
     }
     else if (keyCode == sf::Keyboard::A || keyCode == sf::Keyboard::Left) {
-        camera_->movementHandler().addSpeed(sf::Vector2<Speed>(2.0_bps, 0.0_bps));
+        camera_->movementHandler().setSpeed(sf::Vector2<Speed>(0.0_bps, 0.0_bps));
     }
 }
 
