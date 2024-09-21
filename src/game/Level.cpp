@@ -55,3 +55,11 @@ BlockGrid Level::getBlocks(sf::IntRect rectangle) const {
 
     return blocks;
 }
+
+unsigned int Level::width() {
+    return grid_.width();
+}
+
+unsigned int Level::height() {
+    return grid_.height();
+}
