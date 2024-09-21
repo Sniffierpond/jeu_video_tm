@@ -32,4 +32,7 @@ class Level {
     Retourne une portion de la grille du niveau sous forme de rectangle.
     */
     BlockGrid getBlocks(sf::IntRect rectangle) const;
+
+    unsigned int width();
+    unsigned int height();
 };
