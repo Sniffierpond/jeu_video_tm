@@ -48,4 +48,12 @@ class Array2 {
     T at(int x, int y) const {
         return array_.at(origin_.y + y).at(origin_.x + x);
     }
+
+    unsigned int width() {
+        return array_.empty() ? 0 : array_.back().size();
+    }
+
+    unsigned int height() {
+        return array_.size();
+    }
 };
