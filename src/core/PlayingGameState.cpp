@@ -16,7 +16,7 @@
 PlayingGameState::PlayingGameState(const TextureRegistry& textureRegistry, Level&& level, sf::RenderWindow& window):
     player_(sf::Vector2f(level_.width() / 2, level_.height() -2)),              //En attendant de mettre au point un système de "spawpoint"
     level_(std::move(level)),   //Transfert du ownership
-    camera_(sf::Vector2f(level_.width() / 1.0 / 2, level_.height() / 1.0 / 2),2, 2), //La caméra n'est pas utilisée
+    camera_(sf::Vector2f(0, 0),level_.width(), level_.height()), //La caméra n'est pas utilisée
     renderer_(&level_, player_, camera_, textureRegistry),
     viewable_(window, renderer_, window.getSize().x, window.getSize().y, sf::Vector2i(0, 0)),
     inputHandler_(window),
