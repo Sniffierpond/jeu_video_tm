@@ -1,5 +1,5 @@
 
-set(SRC_FILES BaseBlocksRegister.cpp Block.cpp BlockGrid.cpp Level.cpp SimpleBlockBuilder.cpp)
+set(SRC_FILES BaseBlocksRegister.cpp Block.cpp BlockGrid.cpp Level.cpp SimpleBlockBuilder.cpp Player.cpp)
 
 add_library(game ${SRC_FILES})
 
