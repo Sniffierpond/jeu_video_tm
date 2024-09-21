@@ -11,7 +11,7 @@
 #include "../contracts/Movable.hpp"
 #include "../contracts/Animable.hpp"
 
-class Player: Drawable, Movable, Animable {
+class Player: Drawable, Movable/*, Animable*/ {
     private:
     MovementHandler movementHandler_;
     //AnimationHandler animationHandler_;
