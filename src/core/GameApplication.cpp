@@ -79,7 +79,9 @@ void GameApplication::init() {
     else
         window_.create(sf::VideoMode(windowWidth_, windowHeight_), "JeuTM");
 
-    stack_.push(std::make_shared<PlayingGameState>(textureRegistry_, result.toBlockGrid(blockRegistry_), window_));
+    Level level(blockRegistry_, result.toIntArray(),  {0, 0}, result.blocksNumericIds());
+
+    stack_.push(std::make_shared<PlayingGameState>(textureRegistry_, std::move(level), window_));
     stack_.at(stack_.size() - 1).start();
 
     auto end = clock.now();

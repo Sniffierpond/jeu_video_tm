@@ -11,16 +11,17 @@
 #include "../controller/CameraController.hpp"
 #include "../graphics/View.hpp"
 #include "../controller/SfmlInputHandler.hpp"
-#include "../graphics/BlockRenderer.hpp"
+#include "../graphics/LevelRenderer.hpp"
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
 class PlayingGameState: public GameState {
     private:
-    BlockGrid grid_;
-
+    Level level_;
+    Player player_;
+    
     MovableCamera camera_;
-    BlockRenderer renderer_;
+    LevelRenderer renderer_;
     View viewable_;
     SfmlInputHandler inputHandler_; 
     CameraController controller_;
@@ -29,7 +30,7 @@ class PlayingGameState: public GameState {
     bool paused_ = false;
     
     public:
-    PlayingGameState(const TextureRegistry& textureRegistry, const BlockGrid& grid, sf::RenderWindow& window);
+    PlayingGameState(const TextureRegistry& textureRegistry, Level&& level_, sf::RenderWindow& window);
 
     void start() override;
 
