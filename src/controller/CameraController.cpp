@@ -9,7 +9,7 @@
 #include "../../include/contracts/GameState.hpp"
 #include <SFML/Window/Keyboard.hpp>
 
-CameraController::CameraController(MovableCamera* camera, InputHandler& inputHandler, Viewable& viewable): camera_(camera), inputHandler_(&inputHandler), viewable_(&viewable) {
+CameraController::CameraController(MovableCamera* camera, InputHandler& inputHandler, Viewable& viewable, unsigned int levelWidth, unsigned int levelHeight): camera_(camera), inputHandler_(&inputHandler), viewable_(&viewable), levelWidth_(levelWidth), levelHeight_(levelHeight) {
     start_ = clock_.now();
     inputHandler_->setController(*this);
 }
@@ -37,8 +37,18 @@ void CameraController::update() {
         auto timeDiff = clock_.now() - start_;
         start_ = clock_.now();
 
-        camera_->movementHandler().update(timeDiff);
         inputHandler_->handleInputs();
+        camera_->movementHandler().update(timeDiff);
+        
+        if (camera_->getPosition().x + camera_->getWidth() > levelWidth_)
+            camera_->movementHandler().setPosition({levelWidth_ - camera_->getWidth() - 1, camera_->getPosition().y});
+        else if (camera_->getPosition().x < 0)
+            camera_->movementHandler().setPosition({0, camera_->getPosition().y});
+        
+        if (camera_->getPosition().y + camera_->getHeight() > levelHeight_)
+            camera_->movementHandler().setPosition({camera_->getPosition().x, levelHeight_ - camera_->getHeight() - 1});
+        else if (camera_->getPosition().y < 0)
+            camera_->movementHandler().setPosition({camera_->getPosition().x, 0});
 
         refresh();
     }

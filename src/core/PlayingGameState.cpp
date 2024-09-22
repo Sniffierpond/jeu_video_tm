@@ -20,7 +20,7 @@ PlayingGameState::PlayingGameState(const TextureRegistry& textureRegistry, Level
     renderer_(&level_, player_, camera_, textureRegistry),
     viewable_(window, renderer_, window.getSize().x, window.getSize().y, sf::Vector2i(0, 0)),
     inputHandler_(window),
-    controller_(&camera_, inputHandler_, viewable_)
+    controller_(&camera_, inputHandler_, viewable_, level_.width(), level_.height())
 {}
 
 void PlayingGameState::start() {

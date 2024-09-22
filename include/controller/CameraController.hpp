@@ -17,13 +17,16 @@ class CameraController: Controller {
     Viewable* viewable_;
     MovableCamera* camera_;
 
+    unsigned int levelWidth_;
+    unsigned int levelHeight_;
+
     bool stopped_ = false;
 
     std::chrono::steady_clock clock_;
     std::chrono::time_point<std::chrono::steady_clock> start_;
 
     public:
-    CameraController(MovableCamera* camera, InputHandler& inputHandler, Viewable& viewable);
+    CameraController(MovableCamera* camera, InputHandler& inputHandler, Viewable& viewable, unsigned int levelWidth, unsigned int levelHeight);
 
     void setInputHandler(InputHandler& inputHandler) override;
     void setViewable(Viewable& viewable) override;
