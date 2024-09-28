@@ -52,3 +52,8 @@ Acceleration operator"" _bps2(long double acceleration);
 Retourne une accélération en "kiloblocs" par heure au carré (un "kilobloc" étant équivalent à mille blocs).
 */
 Acceleration operator"" _kbph2(long double acceleration);
+
+namespace std {
+    Acceleration pow(Acceleration x, float y);
+    Acceleration sqrt(Acceleration x);
+}

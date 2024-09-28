@@ -7,6 +7,7 @@
 
 #include "../../include/physics/Speed.hpp"
 #include "../../include/physics/Acceleration.hpp"
+#include <cmath>
 #include <SFML/System/Vector2.hpp>
 
 Speed::Speed(float distance, std::chrono::nanoseconds duration) {
@@ -104,4 +105,15 @@ Speed operator"" _bps(long double speed) {
 
 Speed operator"" _kbph(long double speed) {
     return Speed(1000 * speed, std::chrono::hours(1));
+}
+
+
+namespace std {
+    Speed pow(Speed x, float y) {
+        return Speed(std::pow(x.getSpeed(Speed::bps), y), Speed::bps);
+    }
+    
+    Speed sqrt(Speed x) {
+        return std::pow(x, 0.5);
+    }
 }

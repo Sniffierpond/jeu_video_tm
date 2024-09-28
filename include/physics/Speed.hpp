@@ -57,3 +57,7 @@ Retourne une vitesse en "kiloblocs" par heure (un "kilobloc" étant équivalent 
 */
 Speed operator"" _kbph(long double speed);
 
+namespace std {
+    Speed pow(Speed x, float y);
+    Speed sqrt(Speed x);
+}

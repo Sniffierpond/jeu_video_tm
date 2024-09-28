@@ -6,6 +6,7 @@
 */
 
 #include "../../include/physics/Acceleration.hpp"
+#include <cmath>
 
 Acceleration::Acceleration(Speed speed, std::chrono::nanoseconds duration) {
     acceleration_ = speed.getSpeed(Speed::bps) / duration.count() * 1'000'000'000; 
@@ -99,4 +100,15 @@ Acceleration operator"" _bps2(long double acceleration) {
 
 Acceleration operator"" _kbps2(long double acceleration) {
     return Acceleration(Speed(1000 * acceleration, std::chrono::hours(1)), std::chrono::hours(1));
+}
+
+
+namespace std {
+    Acceleration pow(Acceleration x, float y) {
+        return Acceleration(std::pow(x.getAcceleration(Acceleration::bps2), y), Acceleration::bps2);
+    }
+    
+    Acceleration sqrt(Acceleration x) {
+        return std::pow(x, 0.5);
+    }
 }
