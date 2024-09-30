@@ -68,3 +68,19 @@ void GameController::releaseKey(sf::Keyboard::Key keyCode) {
         movingRight_ = false;
     }
 }
+
+void GameController::leftClick(sf::Vector2f position) {}
+
+void GameController::rightClick(sf::Vector2f position) {}
+
+
+void GameController::moveMouse(sf::Vector2f position) {}
+
+
+bool GameController::stopped() const {
+    return stopped_;
+}
+
+void GameController::exit() {
+    stopped_ = true;
+}
