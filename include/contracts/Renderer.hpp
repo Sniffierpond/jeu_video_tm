@@ -1,6 +1,6 @@
 /*
     -------------------------
-    Renderer.hpp
+    Renderer.cpp
     auteur: Jonathan Rochat
     -------------------------
 */
@@ -17,7 +17,7 @@ class Renderer {
     /*
     Retourne une texture contenant les éléments rendus.
     */
-    virtual sf::Texture render() const = 0;
+    virtual void render(sf::RenderTarget& target) const = 0;
 
     virtual ~Renderer() = 0;
 };
