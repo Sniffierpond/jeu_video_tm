@@ -36,6 +36,9 @@ std::string Player::getTextureId() {
     return "base:player";
 }
 
+std::string Player::getTextureId() const {
+    return "base:player";
+}
 /* const Animation Player::playerAnimation_ = []{
     Animation animation(std::chrono::milliseconds(500));
 

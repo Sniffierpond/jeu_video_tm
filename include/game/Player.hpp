@@ -38,6 +38,7 @@ class Player: Drawable, Movable/*, Animable*/ {
     //const AnimationHandler& animationHandler() const;
 
     std::string getTextureId() override;
+    std::string getTextureId() const;
 
     private:
     Status status_;
