@@ -33,6 +33,6 @@ class Level {
     */
     BlockGrid getBlocks(sf::IntRect rectangle) const;
 
-    unsigned int width();
-    unsigned int height();
+    unsigned int width() const;
+    unsigned int height() const;
 };

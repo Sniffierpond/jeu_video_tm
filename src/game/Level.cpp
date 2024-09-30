@@ -6,6 +6,7 @@
 */
 
 #include "../../include/game/Level.hpp"
+#include <SFML/Graphics/Rect.hpp>
 
 Level::Level(const BlockRegistry& registry, BlockGrid grid): registry_(&registry), grid_(sf::Vector2i(grid.getWidth() / 2, grid.getHeight() / 2), grid.getWidth(), grid.getHeight(), 0) {
     blockTypesIds_[0] = "base:air";
@@ -56,10 +57,10 @@ BlockGrid Level::getBlocks(sf::IntRect rectangle) const {
     return blocks;
 }
 
-unsigned int Level::width() {
+unsigned int Level::width() const {
     return grid_.width();
 }
 
-unsigned int Level::height() {
+unsigned int Level::height() const {
     return grid_.height();
 }

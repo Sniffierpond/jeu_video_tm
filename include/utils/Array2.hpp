@@ -49,11 +49,11 @@ class Array2 {
         return array_.at(origin_.y + y).at(origin_.x + x);
     }
 
-    unsigned int width() {
+    unsigned int width() const {
         return array_.empty() ? 0 : array_.back().size();
     }
 
-    unsigned int height() {
+    unsigned int height() const {
         return array_.size();
     }
 };
