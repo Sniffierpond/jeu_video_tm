@@ -1,5 +1,5 @@
 
-set(SRC_FILES CameraController.cpp SfmlInputHandler.cpp)
+set(SRC_FILES CameraController.cpp GameController.cpp SfmlInputHandler.cpp)
 
 add_library(controller ${SRC_FILES})
 
