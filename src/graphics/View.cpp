@@ -33,7 +33,7 @@ void View::refresh() {
     renderTexture_.clear(sf::Color::Transparent);
     renderer_->render(renderTexture_);
     renderTexture_.display();
-    renderTexture_.getTexture().copyToImage().saveToFile("rendu.png");
+    
 
     sf::Sprite sprite(renderTexture_.getTexture() );
 
