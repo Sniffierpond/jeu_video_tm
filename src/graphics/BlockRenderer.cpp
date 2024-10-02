@@ -6,8 +6,14 @@
 */
 
 #include "../../include/graphics/BlockRenderer.hpp"
+#include <SFML/Graphics/Image.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
+#include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/View.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <iostream>
 #include <stdexcept>
 #include <cmath>
@@ -22,69 +28,29 @@ BlockRenderer::BlockRenderer(const BlockGrid& grid, sf::FloatRect renderArea, co
     }
 }
 
-sf::Texture BlockRenderer::render() const {
-    sf::Texture texture;
-    texture.create(ceil(renderArea_.width * 16), ceil(renderArea_.height * 16));
+void BlockRenderer::render(sf::RenderTarget& target) const {
+    for (int x = 0; x < grid_.getWidth(); ++x) {
+        for (int y = 0; y < grid_.getHeight(); ++y) {
+            if (grid_.getBlock({x, y}).getBlockType() != "base:air") {
+                std::optional<sf::Texture> optTexture = textureRegistry_.get(grid_.getBlock({x, y}).getTextureId());
 
-    // endroit de la texture à partir duquel sera dessiné le prochain bloc
-    sf::Vector2f texturePos;
+                if(optTexture.has_value()) {
+                    sf::Sprite blockSprite(*optTexture);
 
-    for (int y = grid_.getHeight() - 1; y >= 0; --y) {
-        texturePos.x = 0;
+                    blockSprite.setPosition({static_cast<float>(x), static_cast<float>(grid_.getHeight() - 1 - y)});
+                    blockSprite.setScale(1.0 / optTexture->getSize().x, 1.0 / optTexture->getSize().y);
 
-        sf::IntRect blockRenderArea;
-
-        if (0 < renderArea_.top - y && renderArea_.top - y < 1) {                                                   // si l'ordonnée est celle d'un bloc dans lequel commence la zone de rendu
-            blockRenderArea.height = std::floor((renderArea_.top - y) * 16);
+                    target.draw(blockSprite);
+                }
+                else {
+                    throw std::runtime_error("Texture " + grid_.getBlock({x, y}).getTextureId() + " not registered.");
+                }
+            }
         }
-        else if (renderArea_.top <= y && y <= renderArea_.top + renderArea_.height) {                               // si l'ordonnée est celle d'un bloc se trouvant dans la zone de rendu
-            blockRenderArea.height = 16;
-        }
-        else if (0 < renderArea_.top + renderArea_.height - y && renderArea_.top + renderArea_.height - y < 1) {    // si l'ordonnée est celle d'un des derniers blocs se trouvant dans la zone de rendu
-            blockRenderArea.top = std::floor((renderArea_.top + renderArea_.height - y) * 16);
-            blockRenderArea.height = std::floor((1 - (renderArea_.top + renderArea_.height - y)) * 16);
-        }
-
-        for (int x = 0; x < grid_.getWidth(); ++x) {
-            sf::Image blockImage;
- 
-            std::optional<sf::Texture> opt = textureRegistry_.get(grid_.getBlock({x, y}).getTextureId());
-            if (grid_.getBlock({x, y}).getBlockType() == "base:air") {
-                blockImage.create(16, 16);
-            } 
-            else if (opt.has_value()) {
-                blockImage = opt->copyToImage();
-            }
-            else {
-                std::string textureId = grid_.getBlock({x, y}).getTextureId();
-                throw std::runtime_error("Texture \"" + grid_.getBlock({x, y}).getTextureId() + "\" not registered.");
-            }
-
-            if (0 < renderArea_.left - x && renderArea_.left - x < 1) {                                                 // si l'abscisse est celle d'un bloc dans lequel commence la zone de rendu
-                blockRenderArea.width = std::floor((renderArea_.left - x) * 16);
-            }
-            else if (renderArea_.left <= x && x <= renderArea_.left + renderArea_.width) {                              // si l'abscisse est celle d'un bloc se trouvant dans la zone de rendu
-                blockRenderArea.width = 16;
-            }
-            else if (0 < renderArea_.left + renderArea_.width - x && renderArea_.left + renderArea_.width - x < 1) {    // si l'absisse est celle d'un des derniers blocs se trouvant dans la zone de rendu
-                blockRenderArea.left = std::floor((renderArea_.left + renderArea_.width - x) * 16);
-                blockRenderArea.width = std::floor((1 - (renderArea_.left + renderArea_.width - x)) * 16);
-            }
-
-            sf::Image blockRenderedImage;
-            blockRenderedImage.create(blockRenderArea.width, blockRenderArea.height);
-            blockRenderedImage.copy(blockImage, 0, 0, blockRenderArea);
-
-            assert(texturePos.x + blockRenderedImage.getSize().x <= texture.getSize().x);
-            assert(texturePos.y + blockRenderedImage.getSize().y <= texture.getSize().y);
-
-            texture.update(blockRenderedImage, texturePos.x, texturePos.y);
-
-            texturePos.x += blockRenderArea.width;
-        }
-
-        texturePos.y += blockRenderArea.height;
     }
 
-    return texture;
+    /* sf::RectangleShape rect({size.x, size.y});
+    rect.setFillColor(sf::Color::Red);
+
+    target.draw(rect); */
 }

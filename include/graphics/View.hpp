@@ -10,10 +10,12 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/RenderTexture.hpp>
 
 class View: public Viewable {
     private:
     sf::RenderTarget* renderTarget_;
+    sf::RenderTexture renderTexture_;
 
     Renderer* renderer_;
 

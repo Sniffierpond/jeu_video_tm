@@ -12,6 +12,7 @@
 #include "TextureRegistry.hpp"
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/System/Vector2.hpp>
 #include "../game/BlockGrid.hpp"
 
@@ -28,7 +29,7 @@ class BlockRenderer: public Renderer {
     public:
     BlockRenderer(const BlockGrid& grid, sf::FloatRect renderArea, const TextureRegistry& registry);
 
-    sf::Texture render() const override;
+    void render(sf::RenderTarget& target) const;
 
     void setCameraPos(sf::Vector2f pos) {cameraPos_ = pos;}
 };
