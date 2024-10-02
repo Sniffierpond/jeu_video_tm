@@ -10,6 +10,7 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <cmath>
 #include <functional>
@@ -60,14 +61,16 @@ void LevelRenderer::render(sf::RenderTarget& target) const {
 
     target.setView(view);
 
-    
+    target.clear(sf::Color::Cyan);
+
     renderer.render(target);
 
-    /* sf::Texture playerTexture = *textureRegistry_.get(player_.getTextureId());  //TODO: adapter l'affichage du joueur pour une caméra qui n'emplit pas tout le niveau.
+    sf::Texture playerTexture = *textureRegistry_.get(player_.getTextureId());
     
-    levelTexture.create(blocksTexture.getSize().x, blocksTexture.getSize().y);
+    sf::Sprite playerSprite(playerTexture);
     
-    levelTexture.update(sky);
-    levelTexture.update(blocksTexture);
-    levelTexture.update(playerTexture, (player_.movementHandler().getPosition().x) * 16, (level_->height() - player_.movementHandler().getPosition().y) * 16); */
+    playerSprite.setPosition({static_cast<float>(player_.movementHandler().getPosition().x - (center.x - 1.0 / 2 * size.x)),  renderArea.height - static_cast<float>(player_.movementHandler().getPosition().y - (center.y - 1.0 / 2 * size.y))});
+    playerSprite.setScale(1.0 / playerTexture.getSize().x, 1.0 / playerTexture.getSize().y * 2);
+    
+    target.draw(playerSprite);
 }
