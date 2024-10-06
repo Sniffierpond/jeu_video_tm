@@ -50,7 +50,7 @@ BlockGrid Level::getBlocks(sf::IntRect rectangle) const {
         blocks.emplace_back();
 
         for (int x = 0; x < rectangle.width; ++x) {
-            blocks.at(y).push_back(getBlock(sf::Vector2i(x, y)));
+            blocks.at(y).push_back(getBlock(sf::Vector2i(x + rectangle.left, y + rectangle.top)));
         }
     }
 
