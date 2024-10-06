@@ -24,33 +24,41 @@ void LevelRenderer::setCamera(const Camera& camera) {
 }
 
 void LevelRenderer::render(sf::RenderTarget& target) const {
-    sf::FloatRect renderArea(camera_.get().getPosition().x - std::floor(camera_.get().getPosition().x), 
-            camera_.get().getPosition().y - std::floor(camera_.get().getPosition().y),
+    sf::FloatRect renderArea(
+            (camera_.get().getPosition().x - camera_.get().getWidth() / 2) - std::floor(camera_.get().getPosition().x - camera_.get().getWidth() / 2), 
+            (camera_.get().getPosition().y - camera_.get().getHeight() / 2) - std::floor(camera_.get().getPosition().y - camera_.get().getHeight() / 2),
             camera_.get().getWidth(),
             camera_.get().getHeight());
 
     BlockRenderer renderer(
         level_->getBlocks(
             sf::IntRect(
-                std::floor(camera_.get().getPosition().x), 
-                std::floor(camera_.get().getPosition().y), 
-                std::ceil(camera_.get().getWidth() + camera_.get().getPosition().x - std::floor(camera_.get().getPosition().x)), 
-                std::ceil(camera_.get().getHeight() + camera_.get().getPosition().y - std::floor(camera_.get().getPosition().y)))), 
+                std::floor(camera_.get().getPosition().x - camera_.get().getWidth() / 2), 
+                std::floor(camera_.get().getPosition().y - camera_.get().getHeight() / 2), 
+                std::ceil(renderArea.width + renderArea.left), 
+                std::ceil(renderArea.height + renderArea.top))), 
         renderArea,
         textureRegistry_);
 
+    sf::Texture playerTexture = *textureRegistry_.get(player_.getTextureId());
+    
+    sf::Sprite playerSprite(playerTexture);
+    
+    playerSprite.setPosition({player_.movementHandler().getPosition().x - (camera_.get().getPosition().x - renderArea.width / 2),  (camera_.get().getPosition().y + renderArea.height / 2) - player_.movementHandler().getPosition().y - 2});
+    playerSprite.setScale(1.0 / playerTexture.getSize().x, 1.0 / playerTexture.getSize().y * 2);
+    
     sf::View view;
 
     sf::Vector2f size;
     sf::Vector2f center;
 
-    if (target.getSize().x / 1.0 / renderArea.width * renderArea.height >= target.getSize().y) {
+    if (static_cast<float>(target.getSize().x)  / renderArea.width * renderArea.height >= static_cast<float>(target.getSize().y)) {
         size.x = renderArea.width;
-        size.y = renderArea.width / 1.0 / target.getSize().x * target.getSize().y;
+        size.y = renderArea.width  / static_cast<float>(target.getSize().x) * target.getSize().y;
     }
     else {
         size.y = renderArea.height;
-        size.x = renderArea.height / 1.0 / target.getSize().y * target.getSize().x;
+        size.x = renderArea.height / static_cast<float>(target.getSize().y) * target.getSize().x;
     }
 
     center.x = renderArea.width / 2 + renderArea.left;
@@ -58,19 +66,14 @@ void LevelRenderer::render(sf::RenderTarget& target) const {
 
     view.setCenter(center);
     view.setSize(size);
-
+    
     target.setView(view);
 
     target.clear(sf::Color::Cyan);
 
     renderer.render(target);
 
-    sf::Texture playerTexture = *textureRegistry_.get(player_.getTextureId());
-    
-    sf::Sprite playerSprite(playerTexture);
-    
-    playerSprite.setPosition({static_cast<float>(player_.movementHandler().getPosition().x - (center.x - 1.0 / 2 * size.x)),  renderArea.height - static_cast<float>(player_.movementHandler().getPosition().y - (center.y - 1.0 / 2 * size.y))});
-    playerSprite.setScale(1.0 / playerTexture.getSize().x, 1.0 / playerTexture.getSize().y * 2);
-    
     target.draw(playerSprite);
+
+    std::cout << "spritePos: " << playerSprite.getPosition().x << std::endl;
 }
