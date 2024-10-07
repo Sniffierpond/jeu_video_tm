@@ -19,11 +19,13 @@ class PlayerCamera: public Camera, public Updatable {
     std::reference_wrapper<Player> player_;
 
     float width_, height_;
+    unsigned int levelWidth_;
+    unsigned int levelHeight_;
 
     sf::Vector2f position_;
 
     public:
-    PlayerCamera(Player& player, float width, float height);
+    PlayerCamera(Player& player, float width, float height, unsigned int levelWidth, unsigned int levelHeight);
 
     sf::Vector2f getPosition() const override;
 

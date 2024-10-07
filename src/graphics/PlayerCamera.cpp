@@ -7,7 +7,13 @@
 
 #include "../../include/graphics/PlayerCamera.hpp"
 
-PlayerCamera::PlayerCamera(Player& player, float width, float height): player_(player), width_(width), height_(height) {
+PlayerCamera::PlayerCamera(Player& player, float width, float height, unsigned int levelWidth, unsigned int levelHeight): 
+    player_(player),
+    width_(width),
+    height_(height),
+    levelWidth_(levelWidth),
+    levelHeight_(levelHeight)
+{
     position_ = player_.get().movementHandler().getPosition();
 }
 
@@ -28,4 +34,14 @@ float PlayerCamera::getHeight() const {
 
 void PlayerCamera::update(std::chrono::nanoseconds timeDifference) {
     position_ = player_.get().movementHandler().getPosition();
+
+    if (position_.x - width_ / 2 < 0)
+        position_.x = width_ / 2;
+    else if (position_.x + width_ / 2 >= levelWidth_)
+        position_.x = levelWidth_ - 1 - width_ / 2;
+
+    if (position_.y - height_ / 2 < 0)
+        position_.y = height_ / 2;
+    else if (position_.y + height_ / 2 >= levelHeight_)
+        position_.y = levelHeight_ - 1 - height_ / 2;
 }
