@@ -8,10 +8,11 @@
 #pragma once
 
 #include "../game/Block.hpp"
+#include <memory>
 
 class BlockBuilder {
     public:
-    virtual Block build() const = 0 ;
+    virtual std::shared_ptr<Block> build() const = 0 ;
 
     virtual ~BlockBuilder() = 0;
 };

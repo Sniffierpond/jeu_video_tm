@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <memory>
 #include <string>
 #include "../contracts/BlockBuilder.hpp"
 
@@ -19,5 +20,5 @@ class SimpleBlockBuilder: public BlockBuilder {
     public:
     SimpleBlockBuilder& setBlockType(std::string blockType);
 
-    Block build() const override;
+    std::shared_ptr<Block> build() const override;
 };

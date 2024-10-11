@@ -77,7 +77,7 @@ BlockGrid BlockGridLoader::Result::toBlockGrid(const BlockRegistry& blockRegistr
                 throw std::runtime_error("Block \"" + blocksNumericIds_[x] + "\" not registered.");
             }
             else {
-                blocks.back().push_back(blockRegistry.get(blocksNumericIds_[x])->get().build());
+                blocks.back().push_back(*blockRegistry.get(blocksNumericIds_[x])->get().build());
             }
         }
     }

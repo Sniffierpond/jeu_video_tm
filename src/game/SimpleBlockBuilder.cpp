@@ -7,6 +7,7 @@
 
 #include "../../include/game/SimpleBlockBuilder.hpp"
 #include "../../include/game/Block.hpp"
+#include <memory>
 #include <stdexcept>
 
 SimpleBlockBuilder& SimpleBlockBuilder::setBlockType(std::string blockType) {
@@ -14,7 +15,7 @@ SimpleBlockBuilder& SimpleBlockBuilder::setBlockType(std::string blockType) {
     return *this;
 }
 
-Block SimpleBlockBuilder::build() const {
+std::shared_ptr<Block> SimpleBlockBuilder::build() const {
     std::string textureId;
 
     if (blockType_ == "base:bricks" ||
@@ -34,5 +35,5 @@ Block SimpleBlockBuilder::build() const {
         throw std::runtime_error("Unable to build a block with given type");
     }
 
-    return Block(blockType_, textureId);
+    return std::make_shared<Block>(blockType_, textureId);
 };
