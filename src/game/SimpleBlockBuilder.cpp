@@ -35,5 +35,5 @@ std::shared_ptr<Block> SimpleBlockBuilder::build() const {
         throw std::runtime_error("Unable to build a block with given type");
     }
 
-    return std::make_shared<Block>(blockType_, textureId);
+    return std::shared_ptr<Block>(new Block(blockType_, textureId));
 };
