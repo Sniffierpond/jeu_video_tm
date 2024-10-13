@@ -8,23 +8,23 @@
 #pragma once
 
 #include "../contracts/Controller.hpp"
-#include "../physics/PhysicsHandler.hpp"
+#include "../physics/PlayerPhysicsHandler.hpp"
 #include "../game/Player.hpp"
+#include "../graphics/PlayerCamera.hpp"
 #include <chrono>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
 class GameController: public Controller {
     private:
-    bool movingLeft_ = false;
-    bool movingRight_ = false;
-    
     InputHandler* inputHandler_;
     Viewable* viewable_;
 
-    PhysicsHandler* physicsHandler_;
+    PlayerPhysicsHandler* physicsHandler_;
     Player* player_;
 
+    PlayerCamera* camera_;
+    
     unsigned int levelWidth_;
     unsigned int levelHeight_;
 
@@ -34,7 +34,7 @@ class GameController: public Controller {
     std::chrono::time_point<std::chrono::steady_clock> start_;
 
     public:
-    GameController(PhysicsHandler& PhysicsHandler, Player& player, InputHandler& inputHandler, Viewable& viewable, unsigned int levelWidth, unsigned int levelHeight);
+    GameController(PlayerPhysicsHandler& PhysicsHandler, Player& player, InputHandler& inputHandler, Viewable& viewable, PlayerCamera& camera, unsigned int levelWidth, unsigned int levelHeight);
     void setInputHandler(InputHandler& inputHandler) override;
     void setViewable(Viewable& viewable) override;
 

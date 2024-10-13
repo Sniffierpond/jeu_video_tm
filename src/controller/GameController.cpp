@@ -8,14 +8,18 @@
 #include "../../include/controller/GameController.hpp"
 #include <SFML/Window/Keyboard.hpp>
 
-GameController::GameController(PhysicsHandler& physicsHandler, Player& player, InputHandler& inputHandler, Viewable& viewable, unsigned int levelWidth, unsigned int levelHeight):
+GameController::GameController(PlayerPhysicsHandler& physicsHandler, Player& player, InputHandler& inputHandler, Viewable& viewable, PlayerCamera& camera, unsigned int levelWidth, unsigned int levelHeight):
     physicsHandler_(&physicsHandler),
     player_(&player),
     inputHandler_(&inputHandler),
     viewable_(&viewable),
+    camera_(&camera),
     levelWidth_(levelWidth),
     levelHeight_(levelHeight)
-{}
+{
+    inputHandler_->setController(*this);
+    start_ = clock_.now();
+}
 
 
 void GameController::setInputHandler(InputHandler &inputHandler) {
@@ -35,10 +39,12 @@ void GameController::refresh() {
 
 void GameController::update() {
     if (!stopped_) {
-        auto timeDiff = clock_.now() - start_;
+        auto timeDiff = (clock_.now() - start_);
         start_ = clock_.now();
 
+        inputHandler_->handleInputs();
         physicsHandler_->update(timeDiff);
+        camera_->update(timeDiff);
 
         refresh();
     }
@@ -47,25 +53,25 @@ void GameController::update() {
 
 void GameController::pressKey(sf::Keyboard::Key keyCode) {
     if (keyCode == sf::Keyboard::A || keyCode == sf::Keyboard::Left) {
-        if (!movingLeft_) {
-            player_->movementHandler().setAcceleration({-2.0_bps2, player_->movementHandler().getAcceleration().y});
-            movingLeft_ = true;
-        }
+        physicsHandler_->startGoingLeft();
     }
     else if (keyCode == sf::Keyboard::D || keyCode == sf::Keyboard::Right) {
-        if (!movingRight_) {
-            player_->movementHandler().setAcceleration({2.0_bps2, player_->movementHandler().getAcceleration().y});
-            movingRight_ = true;
-        }
+        physicsHandler_->startGoingRight();
+    }
+    else if (keyCode == sf::Keyboard::Space || keyCode == sf::Keyboard::Up) {
+        physicsHandler_->jump();
+    }
+    else if (keyCode == sf::Keyboard::P) {
+        camera_->pause();
+    }
+    else if (keyCode == sf::Keyboard::R) {
+        camera_->resume();
     }
 }
 
 void GameController::releaseKey(sf::Keyboard::Key keyCode) {
     if (keyCode == sf::Keyboard::A || keyCode == sf::Keyboard::Left || keyCode == sf::Keyboard::D || keyCode == sf::Keyboard::Right) {
-        player_->movementHandler().setAcceleration({0.0_bps2, player_->movementHandler().getAcceleration().y});
-        
-        movingLeft_ = false;
-        movingRight_ = false;
+        physicsHandler_->stop();
     }
 }
 
