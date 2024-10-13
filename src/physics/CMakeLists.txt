@@ -1,5 +1,5 @@
 
-set(SRC_FILES Acceleration.cpp MovementHandler.cpp Speed.cpp PhysicsHandler.cpp)
+set(SRC_FILES Acceleration.cpp MovementHandler.cpp Speed.cpp PhysicsHandler.cpp PlayerPhysicsHandler.cpp)
 
 add_library(physics ${SRC_FILES})
 
