@@ -18,7 +18,6 @@ class PlayerPhysicsHandler: public PhysicsHandler {
 
     bool goingLeft_ = false;
     bool goingRight_ = false;
-    bool jumping_ = false;
     bool slowingDown_ = false;
 
     public:

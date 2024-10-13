@@ -48,7 +48,6 @@ void PlayerPhysicsHandler::update(std::chrono::nanoseconds timeDifference) {
     }
     
     if (playerSpeed.y.getSpeed(Speed::bps) <= 0) {
-        jumping_ = false;
 
         if (playerSpeed.y.getSpeed(Speed::bps) < 0) {
             player_.status() = Player::FALLING;
@@ -95,6 +94,5 @@ void PlayerPhysicsHandler::jump() {
     // fait sauter le joueur uniquement s'il se trouve sur une surface solide (pas déjà dans les airs)
     if (collides({player_.movementHandler().getPosition().x, std::ceil(player_.movementHandler().getPosition().y - 1)})) {
         player_.movementHandler().addSpeed({player_.movementHandler().getSpeed().x, jumpSpeed_});
-        jumping_ = true;
     }
 }
