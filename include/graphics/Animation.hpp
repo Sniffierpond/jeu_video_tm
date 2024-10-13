@@ -15,7 +15,6 @@ class Animation {
     private:
     std::vector<std::string> frames_;
 
-    std::chrono::nanoseconds duration_;
     std::chrono::nanoseconds frameDuration_;
 
     public:

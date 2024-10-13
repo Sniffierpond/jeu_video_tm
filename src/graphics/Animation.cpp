@@ -15,7 +15,6 @@ Animation::Animation(std::chrono::nanoseconds frameDuration) {
 
 Animation& Animation::addFrame(std::string frameTexture) {
     frames_.push_back(frameTexture);
-    duration_ += frameDuration_;
 
     return *this;
 }
@@ -26,7 +25,7 @@ std::string Animation::frame(unsigned int index) const {
 }
 
 std::string Animation::frame(std::chrono::nanoseconds timeElapsed) const {
-    return frames_.at(std::floor((timeElapsed % duration_) / frameDuration_));
+    return frames_.at(std::floor((timeElapsed % duration()) / frameDuration_));
 }
 
 
@@ -35,5 +34,5 @@ unsigned int Animation::length() const {
 }
 
 std::chrono::nanoseconds Animation::duration() const {
-    return duration_;
+    return (frames_.size() * frameDuration_);
 }
