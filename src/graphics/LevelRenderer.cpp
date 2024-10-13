@@ -12,6 +12,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Vector2.hpp>
 #include <cmath>
 #include <functional>
 #include <iostream>
@@ -44,7 +45,7 @@ void LevelRenderer::render(sf::RenderTarget& target) const {
     
     sf::Sprite playerSprite(playerTexture);
     
-    playerSprite.setPosition({player_.movementHandler().getPosition().x - (camera_.get().getPosition().x - renderArea.width / 2),  (camera_.get().getPosition().y + renderArea.height / 2) - player_.movementHandler().getPosition().y - 2});
+    playerSprite.setPosition(sf::Vector2f((player_.movementHandler().getPosition().x - 0.5 - (camera_.get().getPosition().x - renderArea.width / 2)) + renderArea.left,  ((camera_.get().getPosition().y + renderArea.height / 2) - player_.movementHandler().getPosition().y - 2) - renderArea.top));
     playerSprite.setScale(1.0 / playerTexture.getSize().x, 1.0 / playerTexture.getSize().y * 2);
     
     sf::View view;
@@ -54,7 +55,7 @@ void LevelRenderer::render(sf::RenderTarget& target) const {
 
     if (static_cast<float>(target.getSize().x)  / renderArea.width * renderArea.height >= static_cast<float>(target.getSize().y)) {
         size.x = renderArea.width;
-        size.y = renderArea.width  / static_cast<float>(target.getSize().x) * target.getSize().y;
+        size.y = renderArea.width / static_cast<float>(target.getSize().x) * target.getSize().y;
     }
     else {
         size.y = renderArea.height;
@@ -62,7 +63,7 @@ void LevelRenderer::render(sf::RenderTarget& target) const {
     }
 
     center.x = renderArea.width / 2 + renderArea.left;
-    center.y = renderArea.height / 2 + renderArea.top;
+    center.y = renderArea.height / 2 - renderArea.top;
 
     view.setCenter(center);
     view.setSize(size);
@@ -74,6 +75,4 @@ void LevelRenderer::render(sf::RenderTarget& target) const {
     renderer.render(target);
 
     target.draw(playerSprite);
-
-    std::cout << "spritePos: " << playerSprite.getPosition().x << std::endl;
 }
