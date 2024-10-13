@@ -32,7 +32,12 @@ void PlayerPhysicsHandler::update(std::chrono::nanoseconds timeDifference) {
         }
         // si ce n'est pas le cas, arrête la déccélération du joueur
         else {
-            player_.movementHandler().setAcceleration({0.0_bps2, player_.movementHandler().getAcceleration().y});
+            if (goingLeft_) {
+                player_.movementHandler().setAcceleration({1.0_bps2, player_.movementHandler().getAcceleration().y});
+            }
+            else if (goingRight_) {
+                player_.movementHandler().setAcceleration({-1.0_bps2, player_.movementHandler().getAcceleration().y});
+            }
         }
 
         // si le joueur était en train de ralentir et qu'il a atteint une vitesse nulle ou inverse à la direction dans laquelle il allait, arrête la déccélération
