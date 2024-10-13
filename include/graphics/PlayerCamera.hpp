@@ -18,6 +18,8 @@ class PlayerCamera: public Camera, public Updatable {
     private:
     std::reference_wrapper<Player> player_;
 
+    bool paused_ = false;
+    
     float width_, height_;
     unsigned int levelWidth_;
     unsigned int levelHeight_;
@@ -33,4 +35,7 @@ class PlayerCamera: public Camera, public Updatable {
     float getHeight() const override;
 
     void update(std::chrono::nanoseconds timeDifference) override;
+
+    void pause();
+    void resume();
 };

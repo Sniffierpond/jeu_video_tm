@@ -33,7 +33,8 @@ float PlayerCamera::getHeight() const {
 
 
 void PlayerCamera::update(std::chrono::nanoseconds timeDifference) {
-    position_ = player_.get().movementHandler().getPosition();
+    if (!paused_)
+        position_ = player_.get().movementHandler().getPosition();
 
     if (position_.x - width_ / 2 < 0)
         position_.x = width_ / 2;
@@ -44,4 +45,12 @@ void PlayerCamera::update(std::chrono::nanoseconds timeDifference) {
         position_.y = height_ / 2;
     else if (position_.y + height_ / 2 >= levelHeight_)
         position_.y = levelHeight_ - 1 - height_ / 2;
+}
+
+void PlayerCamera::pause() {
+    paused_ = true;
+}
+
+void PlayerCamera::resume() {
+    paused_ = false;
 }
