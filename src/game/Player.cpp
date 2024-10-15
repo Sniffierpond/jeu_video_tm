@@ -5,11 +5,9 @@
     -------------------------
 */
 
-#pragma once
-
 #include "../../include/game/Player.hpp"
 
-Player::Player(sf::Vector2f position)/*: animationHandler_(playerAnimation_)*/ {
+Player::Player(sf::Vector2f position): animationHandler_(playerAnimation_) {
     movementHandler_.setPosition(position);
 }
 
@@ -32,20 +30,30 @@ const MovementHandler& Player::movementHandler() const {
 }
 
 
+AnimationHandler& Player::animationHandler() {
+    return animationHandler_;
+}
+
+const AnimationHandler& Player::animationHandler() const {
+    return animationHandler_;
+}
+
+
 std::string Player::getTextureId() {
-    return "base:player";
+    return animationHandler_.getTextureId();
 }
 
 std::string Player::getTextureId() const {
-    return "base:player";
+    return animationHandler_.getTextureId();
 }
-/* const Animation Player::playerAnimation_ = []{
-    Animation animation(std::chrono::milliseconds(500));
 
-    animation.addFrame("base:player:1")
-    .addFrame("base:player:2")
-    .addFrame("base:player:3")
-    .addFrame("base:player:4");
+const SimpleAnimation Player::playerAnimation_ = []{
+    SimpleAnimation animation(std::chrono::milliseconds(500));
+
+    animation.addFrame("base:player:walking:1")
+    .addFrame("base:player:walking:2")
+    .addFrame("base:player:walking:3")
+    .addFrame("base:player:walking:2");
     
     return animation;
-}(); */
+}();
