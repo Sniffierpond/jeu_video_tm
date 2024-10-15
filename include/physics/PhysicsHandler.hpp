@@ -56,5 +56,7 @@ class PhysicsHandler: Updatable {
     public:
     PhysicsHandler(Acceleration gravityAcceleration, Speed maxHorSpeed, Speed maxVertSpeed, sf::FloatRect hitBox, MovementHandler& movementHandler, const Level& level);
 
-    void update(std::chrono::nanoseconds timeDifference) override; 
+    virtual void update(std::chrono::nanoseconds timeDifference) override;
+
+    virtual ~PhysicsHandler() = default;
 };
