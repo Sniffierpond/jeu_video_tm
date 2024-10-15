@@ -14,13 +14,14 @@
 #include <cmath>
 
 PlayingGameState::PlayingGameState(const TextureRegistry& textureRegistry, Level&& level, sf::RenderWindow& window):
-    player_(sf::Vector2f(level_.width() / 2, level_.height() -2)),              //En attendant de mettre au point un système de "spawpoint"
+    player_(sf::Vector2f(level_.width() / 2, 11)),              //En attendant de mettre au point un système de "spawpoint"
     level_(std::move(level)),   //Transfert du ownership
-    camera_(sf::Vector2f(0, 0),level_.width(), level_.height()), //La caméra n'est pas utilisée
+    physicsHandler_(player_, gravityAcceleration_, maxHorSpeed_, maxVertSpeed_, jumpSpeed_, level_),
+    camera_(player_,level_.width() / 2, level_.height() / 2, level_.width(), level_.height()),
     renderer_(&level_, player_, camera_, textureRegistry),
     viewable_(window, renderer_, window.getSize().x, window.getSize().y, sf::Vector2i(0, 0)),
     inputHandler_(window),
-    controller_(&camera_, inputHandler_, viewable_, level_.width(), level_.height())
+    controller_(physicsHandler_, player_, inputHandler_, viewable_, camera_, level_.width(), level_.height())
 {}
 
 void PlayingGameState::start() {
