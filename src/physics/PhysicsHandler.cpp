@@ -49,7 +49,6 @@ bool PhysicsHandler::collides(sf::Vector2f pos) {
     for (int x = 0; x < blocks.getWidth(); ++x) {
         for (int y = 0; y < blocks.getHeight(); ++y) {
             if ((blocks.getBlock({x, y}).getBlockType() != "base:air")) {
-                std::cout << "Collision en {" << pos.x << ";" << pos.y  << "}" << std::endl;
                 return true;
             }
         }
@@ -68,7 +67,6 @@ PhysicsHandler::PhysicsHandler(Acceleration gravityAcceleration, Speed maxHorSpe
     level_(&level)
 {
     movementHandler_->setAcceleration({0.0_bps2, -gravityAcceleration_});
-    std::cout << "jkdjf";
 }
 
 void PhysicsHandler::update(std::chrono::nanoseconds timeDifference) {
