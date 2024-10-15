@@ -54,6 +54,9 @@ bool PhysicsHandler::collides(sf::Vector2f pos) {
         }
     }
 
+    if (pos.x + hitBox_.left < 0 || pos.x + hitBox_.width - hitBox_.left >= level_->width() || pos.y + hitBox_.top < 0 || pos.y + hitBox_.height - hitBox_.top >= level_->height())
+        return true;
+    
     return false;
 }
 
