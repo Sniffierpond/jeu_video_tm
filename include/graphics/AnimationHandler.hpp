@@ -13,7 +13,7 @@
 #include <functional>
 
 class AnimationHandler: public Updatable {
-    private:
+    protected:
     const std::reference_wrapper<const Animation> animation_;
     mutable std::chrono::nanoseconds timeElapsed_;
 
