@@ -20,7 +20,9 @@ class AnimationHandler: public Updatable {
     public:
     AnimationHandler(const Animation& animation);
 
-    std::string getTextureId() const;
+    virtual std::string getTextureId() const;
 
-    void update(std::chrono::nanoseconds timeDifference) override;
+    virtual void update(std::chrono::nanoseconds timeDifference) override;
+
+    virtual ~AnimationHandler() = default;
 };
