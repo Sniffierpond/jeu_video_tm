@@ -23,4 +23,7 @@ void BaseTexturesRegister::registerTextures(TextureRegistry& registry) {
     registry.registerElement("base:stone", loader.load("resources/stone.png"));
     registry.registerElement("base:tree_log", loader.load("resources/tree_log.png"));
     registry.registerElement("base:player", loader.load("resources/player.png"));
+    registry.registerElement("base:player:walking:1", loader.load("resources/player_walking_1.png"));
+    registry.registerElement("base:player:walking:2", loader.load("resources/player_walking_2.png"));
+    registry.registerElement("base:player:walking:3", loader.load("resources/player_walking_3.png"));
 }
