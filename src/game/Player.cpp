@@ -7,7 +7,7 @@
 
 #include "../../include/game/Player.hpp"
 
-Player::Player(sf::Vector2f position): animationHandler_(playerAnimation_) {
+Player::Player(sf::Vector2f position): animationHandler_(*this) {
     movementHandler_.setPosition(position);
 }
 
@@ -46,14 +46,3 @@ std::string Player::getTextureId() {
 std::string Player::getTextureId() const {
     return animationHandler_.getTextureId();
 }
-
-const SimpleAnimation Player::playerAnimation_ = []{
-    SimpleAnimation animation(std::chrono::milliseconds(500));
-
-    animation.addFrame("base:player:walking:1")
-    .addFrame("base:player:walking:2")
-    .addFrame("base:player:walking:3")
-    .addFrame("base:player:walking:2");
-    
-    return animation;
-}();

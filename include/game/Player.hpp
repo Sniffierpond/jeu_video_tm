@@ -10,11 +10,12 @@
 #include "../contracts/Drawable.hpp"
 #include "../contracts/Movable.hpp"
 #include "../contracts/Animable.hpp"
+#include "../graphics/PlayerAnimationHandler.hpp"
 
-class Player: Drawable, Movable/*, Animable*/ {
+class Player: Drawable, Movable, Animable {
     private:
     MovementHandler movementHandler_;
-    //AnimationHandler animationHandler_;
+    PlayerAnimationHandler animationHandler_;
 
     public:
     enum Status {
@@ -23,8 +24,6 @@ class Player: Drawable, Movable/*, Animable*/ {
         JUMPING,
         FALLING
     };
-
-    //const static Animation playerAnimation_;
     
     Player(sf::Vector2f position);
     
@@ -34,8 +33,8 @@ class Player: Drawable, Movable/*, Animable*/ {
     MovementHandler& movementHandler() override;
     const MovementHandler& movementHandler() const;
     
-    //AnimationHandler& animationHandler() override;
-    //const AnimationHandler& animationHandler() const;
+    AnimationHandler& animationHandler() override;
+    const AnimationHandler& animationHandler() const;
 
     std::string getTextureId() override;
     std::string getTextureId() const;

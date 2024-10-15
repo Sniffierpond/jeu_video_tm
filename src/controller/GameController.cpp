@@ -44,6 +44,7 @@ void GameController::update() {
 
         inputHandler_->handleInputs();
         physicsHandler_->update(timeDiff);
+        player_->animationHandler().update(timeDiff);
         camera_->update(timeDiff);
 
         refresh();

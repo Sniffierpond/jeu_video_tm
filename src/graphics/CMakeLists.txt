@@ -1,5 +1,5 @@
 
-set(SRC_FILES SimpleAnimation.cpp AnimationHandler.cpp BaseTexturesRegister.cpp BlockRenderer.cpp LevelRenderer.cpp MovableCamera.cpp PlayerCamera.cpp StaticCamera.cpp View.cpp)
+set(SRC_FILES PlayerAnimationHandler.cpp SimpleAnimation.cpp AnimationHandler.cpp BaseTexturesRegister.cpp BlockRenderer.cpp LevelRenderer.cpp MovableCamera.cpp PlayerCamera.cpp StaticCamera.cpp View.cpp)
 
 add_library(graphics ${SRC_FILES})
 

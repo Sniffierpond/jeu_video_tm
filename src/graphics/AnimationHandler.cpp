@@ -7,7 +7,7 @@
 
 #include "../../include/graphics/AnimationHandler.hpp"
 
-AnimationHandler::AnimationHandler(const Animation& animation): animation_(animation) {}
+AnimationHandler::AnimationHandler(const Animation& animation): animation_(animation), timeElapsed_() {}
 
 
 std::string AnimationHandler::getTextureId() const {
