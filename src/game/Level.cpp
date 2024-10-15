@@ -40,7 +40,7 @@ Level::Level(const BlockRegistry& registry, const std::vector<std::vector<unsign
 Level::Level(Level&& other): grid_(std::move(other.grid_)), registry_(other.registry_), blockTypesIds_(std::move(other.blockTypesIds_)) {}
 
 Block Level::getBlock(sf::Vector2i position) const {
-    return registry_->get(blockTypesIds_.at(grid_.at(position.x, position.y)))->get().build();
+    return *registry_->get(blockTypesIds_.at(grid_.at(position.x, position.y)))->get().build();
 }
 
 BlockGrid Level::getBlocks(sf::IntRect rectangle) const {
