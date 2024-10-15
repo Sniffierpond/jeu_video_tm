@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <ostream>
+#include <stdexcept>
 #include <string>
 #include <tuple>
 #include <fstream>
@@ -78,7 +79,9 @@ std::vector<std::vector<unsigned int>> editor() {
                 id += c;
             }
         }
-
+        if (line.size() != width) {
+            throw std::runtime_error("Erreur à la ligne " + std::to_string(y) + ". La ligne est trop  " + (width > line.size() ? "longue." : "courte."));        
+        }
         blocks[y] = line;
         std::cin.clear();
         std::cout << "\n";
