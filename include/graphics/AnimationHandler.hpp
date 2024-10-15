@@ -8,16 +8,17 @@
 #pragma once
 
 #include "../../include/contracts/Updatable.hpp"
-#include "Animation.hpp"
+#include "../contracts/Animation.hpp"
 #include <chrono>
+#include <functional>
 
 class AnimationHandler: public Updatable {
     private:
-    const Animation animation_;
+    const std::reference_wrapper<const Animation> animation_;
     mutable std::chrono::nanoseconds timeElapsed_;
 
     public:
-    AnimationHandler(Animation animation);
+    AnimationHandler(const Animation& animation);
 
     std::string getTextureId() const;
 
