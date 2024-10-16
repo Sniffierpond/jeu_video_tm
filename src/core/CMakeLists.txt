@@ -1,5 +1,5 @@
 
-set(SRC_FILES GameApplication.cpp GameStateStack.cpp PlayingGameState.cpp EventType.cpp)
+set(SRC_FILES GameApplication.cpp GameStateStack.cpp PlayingGameState.cpp EventType.cpp EventHandler.cpp)
 
 add_library(core ${SRC_FILES})
 
