@@ -24,6 +24,8 @@ int main (int argc, char** argv) {
     ("F,fullscreen", "si l'application est en mode plein écran", cxxopts::value<bool>()->default_value("false"))
     ("W,windowwidth", "largeur de la fenêtre si en mode fenêtré", cxxopts::value<unsigned int>()->default_value("1600"))
     ("H,windowheight", "hauteur de la fenêtre si en mode fenêtré", cxxopts::value<unsigned int>()->default_value("900"))
+    ("x, playerinitialx", "abscisse de la position initiale du joueur", cxxopts::value<float>())
+    ("y,playerinitialy", "ordonnée de la position initiale du joueur", cxxopts::value<float>())
     ("h,help", "afficher l'aide");
 
     options.parse_positional("blockgrid");
@@ -49,6 +51,9 @@ int main (int argc, char** argv) {
     else if(!std::filesystem::exists(result["blockgrid"].as<std::string>()) || !std::filesystem::is_regular_file(result["blockgrid"].as<std::string>())) {
         std::cout << "Erreur: Le chemin d'accès spécifié ne semble pas être valide." << std::endl;
         return EXIT_FAILURE;
+    }
+    else if(!result.count("playerinitialx") || !result.count("playerinitialy")) {
+        std::cout << "Veuillez spécifier la position initiale du joueur.\n" << options.help() << std::endl;
     }
 
     GameApplication app(result);

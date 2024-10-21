@@ -40,7 +40,7 @@ class PlayingGameState: public GameState {
     bool paused_ = false;
     
     public:
-    PlayingGameState(const TextureRegistry& textureRegistry, Level&& level_, sf::RenderWindow& window);
+    PlayingGameState(const TextureRegistry& textureRegistry, Level&& level_, sf::RenderWindow& window, sf::Vector2f playerInitPos);
 
     void start() override;
 

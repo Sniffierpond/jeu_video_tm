@@ -15,6 +15,7 @@
 #include "../game/Level.hpp"
 #include "GameStateStack.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/System/Vector2.hpp>
 
 class GameApplication: public Application {
     private:
@@ -30,6 +31,8 @@ class GameApplication: public Application {
     const bool fullscreen_;
     unsigned int windowHeight_;
     unsigned int windowWidth_;
+
+    sf::Vector2f playerInitPos_;
 
     bool shouldExit_ = false;
     bool initialised_ = false;

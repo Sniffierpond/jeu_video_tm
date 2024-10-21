@@ -22,7 +22,8 @@ GameApplication::GameApplication(const cxxopts::ParseResult& options):
     fullscreen_(options["fullscreen"].as<bool>()),
     windowHeight_(options["windowheight"].as<unsigned int>()),
     windowWidth_(options["windowwidth"].as<unsigned int>()),
-    gridPath_(options["blockgrid"].as<std::string>())
+    gridPath_(options["blockgrid"].as<std::string>()),
+    playerInitPos_({options["playerinitialx"].as<float>(), options["playerinitialy"].as<float>()})
 {}
 
 int GameApplication::launch() noexcept {
@@ -81,7 +82,7 @@ void GameApplication::init() {
 
     Level level(blockRegistry_, result.toIntArray(),  {0, 0}, result.blocksNumericIds());
 
-    stack_.push(std::make_shared<PlayingGameState>(textureRegistry_, std::move(level), window_));
+    stack_.push(std::make_shared<PlayingGameState>(textureRegistry_, std::move(level), window_, playerInitPos_));
     stack_.at(stack_.size() - 1).start();
 
     auto end = clock.now();
