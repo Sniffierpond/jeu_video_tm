@@ -25,6 +25,9 @@ class Controller {
     */
     virtual void refresh() = 0;
     
+    /*
+    Met à jour l'affichage et les autres données contrôlées par le contrôleur.
+    */
     virtual void update() = 0;
     
     virtual void pressKey(sf::Keyboard::Key keyCode) = 0;
@@ -35,8 +38,14 @@ class Controller {
 
     virtual void moveMouse(sf::Vector2f position) = 0;
 
+    /*
+    Retourne si le contrôleur a été arrêté.
+    */
     virtual bool stopped() const = 0;
 
+    /*
+    Arrête le contrôleur.
+    */
     virtual void exit() = 0;
 
     virtual ~Controller() = 0;
