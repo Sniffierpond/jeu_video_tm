@@ -29,7 +29,8 @@ void LevelRenderer::render(sf::RenderTarget& target) const {
             (camera_.get().getPosition().x - camera_.get().getWidth() / 2) - std::floor(camera_.get().getPosition().x - camera_.get().getWidth() / 2), 
             (camera_.get().getPosition().y - camera_.get().getHeight() / 2) - std::floor(camera_.get().getPosition().y - camera_.get().getHeight() / 2),
             camera_.get().getWidth(),
-            camera_.get().getHeight());
+            camera_.get().getHeight()
+    );
 
     BlockRenderer renderer(
         level_->getBlocks(
@@ -37,14 +38,20 @@ void LevelRenderer::render(sf::RenderTarget& target) const {
                 std::floor(camera_.get().getPosition().x - camera_.get().getWidth() / 2), 
                 std::floor(camera_.get().getPosition().y - camera_.get().getHeight() / 2), 
                 std::ceil(renderArea.width + renderArea.left), 
-                std::ceil(renderArea.height + renderArea.top))), 
-        textureRegistry_);
+                std::ceil(renderArea.height + renderArea.top)
+            )
+        ), 
+        textureRegistry_
+    );
 
     sf::Texture playerTexture = *textureRegistry_.get(player_.getTextureId());
     
     sf::Sprite playerSprite(playerTexture);
     
-    playerSprite.setPosition(sf::Vector2f((player_.movementHandler().getPosition().x - 0.5 - (camera_.get().getPosition().x - renderArea.width / 2)) + renderArea.left,  ((camera_.get().getPosition().y + renderArea.height / 2) - player_.movementHandler().getPosition().y - 2) - renderArea.top));
+    playerSprite.setPosition(sf::Vector2f(
+        (player_.movementHandler().getPosition().x - 0.5 - (camera_.get().getPosition().x - renderArea.width / 2)) + renderArea.left,  
+        (level_->height() - player_.movementHandler().getPosition().y) - 1 - (level_->height() - camera_.get().getPosition().y - renderArea.height / 2 + renderArea.top)
+    ));
     playerSprite.setScale(1.0 / playerTexture.getSize().x, 1.0 / playerTexture.getSize().y * 2);
     
     sf::View view;
@@ -62,7 +69,7 @@ void LevelRenderer::render(sf::RenderTarget& target) const {
     }
 
     viewCenter.x = renderArea.width / 2 + renderArea.left;
-    viewCenter.y = (renderArea.height - (1 - renderArea.top)) / 2 - renderArea.top;
+    viewCenter.y = renderArea.height / 2 + (1 - renderArea.top);
 
     view.setCenter(viewCenter);
     view.setSize(viewSize);
