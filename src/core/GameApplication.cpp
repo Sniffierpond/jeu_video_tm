@@ -27,10 +27,11 @@ GameApplication::GameApplication(const cxxopts::ParseResult& options):
 {}
 
 int GameApplication::launch() noexcept {
-    if (!initialised_)
-        init();
-
     try {
+        if (!initialised_)
+            init();
+
+    
         std::chrono::steady_clock clock;
         auto start = clock.now();
 
@@ -72,8 +73,6 @@ void GameApplication::init() {
     BlockGridLoader loader(gridPath_);
     auto result = loader.load();
     auto intArray = result.toIntArray();
-
-    auto vecteur = sf::Vector2i((intArray.front().size() - 1) / 2, 0);
 
     if (fullscreen_)
         window_.create(sf::VideoMode::getFullscreenModes()[0], "Jeu TM", sf::Style::Fullscreen);
