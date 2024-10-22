@@ -22,6 +22,7 @@ int GameStateStack::size() const {
 void GameStateStack::update() {
     if (!stack_.empty()) {
         for (auto iterator = stack_.begin(); iterator != stack_.end(); ++iterator) {
+            // Retire un état du tas d'états
             if (!(*iterator)->active()) {
                 stack_.erase(iterator);
             }
