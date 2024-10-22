@@ -17,7 +17,7 @@ PlayingGameState::PlayingGameState(const TextureRegistry& textureRegistry, Level
     player_(playerInitPos),              //En attendant de mettre au point un système de "spawpoint"
     level_(std::move(level)),   //Transfert du ownership
     physicsHandler_(player_, gravityAcceleration_, maxHorSpeed_, maxVertSpeed_, jumpSpeed_, level_),
-    camera_(player_,level_.width() / 2, level_.height() / 2, level_.width(), level_.height()),
+    camera_(player_,level_.width() < 10 ? level_.width() : 10, level_.height() < (160.0 / 9) ? level_.height() : (160.0 / 9), level_.width(), level_.height()),
     renderer_(&level_, player_, camera_, textureRegistry),
     viewable_(window, renderer_, window.getSize().x, window.getSize().y, sf::Vector2i(0, 0)),
     inputHandler_(window),
