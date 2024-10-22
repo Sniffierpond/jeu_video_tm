@@ -14,7 +14,8 @@ Le jeu peut également être exécuté avec les options suivantes:
 |**-x** / **--playerinitialx**|indique l'abscisse de la position initiale du joueur. Cet argument **n'est pas optionnel**.|
 |**-y** / **--playerinitialy**|indique l'ordonnée de la position initiale du joueur. Cet argument **n'est pas optionnel**.|
 |**-h** / **--help**|affiche un message d'aide sur les arguments en ligne de commande|
-
+## contrôles
+Le joueur peut être bougé à droite ou à gauche avec respectivement la touche "A" ou "flèche gauche" et la touche "D" ou "flèche droite". Il peut sauter en pressant la touche "espace" ou la touche "flèche du haut".
 ## Éditeur de niveau
 Pour l'instant, le projet comporte également un éditeur de niveau extrêmement basique en ligne de commande. Il peut être exécuté avec comme argument le chemin d'un fichier qui sera créé au format *blockgrid*.
 
