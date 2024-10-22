@@ -23,13 +23,9 @@ class BlockRenderer: public Renderer {
     private:
     const BlockGrid grid_;
     const TextureRegistry& textureRegistry_;
-    sf::FloatRect renderArea_;
-    sf::Vector2f cameraPos_;
 
     public:
-    BlockRenderer(const BlockGrid& grid, sf::FloatRect renderArea, const TextureRegistry& registry);
+    BlockRenderer(const BlockGrid& grid, const TextureRegistry& registry);
 
     void render(sf::RenderTarget& target) const;
-
-    void setCameraPos(sf::Vector2f pos) {cameraPos_ = pos;}
 };

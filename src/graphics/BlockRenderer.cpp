@@ -19,14 +19,7 @@
 #include <cmath>
 #include <cassert>
 
-BlockRenderer::BlockRenderer(const BlockGrid& grid, sf::FloatRect renderArea, const TextureRegistry& registry): grid_(grid), renderArea_(renderArea), textureRegistry_(registry) {
-    if (renderArea_. width < 0 || renderArea_.height < 0) {
-        throw std::invalid_argument("Size of the render area must not be negative.");
-    }
-    if (renderArea_.left + renderArea_.width > grid.getWidth() || renderArea_.top + renderArea_.height > grid.getHeight()) {
-        throw std::invalid_argument("Render area must be contained in block grid area.");
-    }
-}
+BlockRenderer::BlockRenderer(const BlockGrid& grid, const TextureRegistry& registry): grid_(grid), textureRegistry_(registry) {}
 
 void BlockRenderer::render(sf::RenderTarget& target) const {
     for (int x = 0; x < grid_.getWidth(); ++x) {
@@ -48,9 +41,4 @@ void BlockRenderer::render(sf::RenderTarget& target) const {
             }
         }
     }
-
-    /* sf::RectangleShape rect({size.x, size.y});
-    rect.setFillColor(sf::Color::Red);
-
-    target.draw(rect); */
 }

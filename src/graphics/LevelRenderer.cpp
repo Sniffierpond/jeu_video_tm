@@ -38,7 +38,6 @@ void LevelRenderer::render(sf::RenderTarget& target) const {
                 std::floor(camera_.get().getPosition().y - camera_.get().getHeight() / 2), 
                 std::ceil(renderArea.width + renderArea.left), 
                 std::ceil(renderArea.height + renderArea.top))), 
-        renderArea,
         textureRegistry_);
 
     sf::Texture playerTexture = *textureRegistry_.get(player_.getTextureId());
@@ -50,23 +49,23 @@ void LevelRenderer::render(sf::RenderTarget& target) const {
     
     sf::View view;
 
-    sf::Vector2f size;
-    sf::Vector2f center;
+    sf::Vector2f viewSize;
+    sf::Vector2f viewCenter;
 
     if (static_cast<float>(target.getSize().x)  / renderArea.width * renderArea.height >= static_cast<float>(target.getSize().y)) {
-        size.x = renderArea.width;
-        size.y = renderArea.width / static_cast<float>(target.getSize().x) * target.getSize().y;
+        viewSize.x = renderArea.width;
+        viewSize.y = renderArea.width / static_cast<float>(target.getSize().x) * target.getSize().y;
     }
     else {
-        size.y = renderArea.height;
-        size.x = renderArea.height / static_cast<float>(target.getSize().y) * target.getSize().x;
+        viewSize.y = renderArea.height;
+        viewSize.x = renderArea.height / static_cast<float>(target.getSize().y) * target.getSize().x;
     }
 
-    center.x = renderArea.width / 2 + renderArea.left;
-    center.y = renderArea.height / 2 - renderArea.top;
+    viewCenter.x = renderArea.width / 2 + renderArea.left;
+    viewCenter.y = (renderArea.height - (1 - renderArea.top)) / 2 - renderArea.top;
 
-    view.setCenter(center);
-    view.setSize(size);
+    view.setCenter(viewCenter);
+    view.setSize(viewSize);
     
     target.setView(view);
 
