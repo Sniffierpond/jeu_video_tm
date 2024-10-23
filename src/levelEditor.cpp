@@ -79,9 +79,6 @@ std::vector<std::vector<unsigned int>> editor() {
                 id += c;
             }
         }
-        if (line.size() != width) {
-            throw std::runtime_error("Erreur à la ligne " + std::to_string(y) + ". La ligne est trop  " + (width > line.size() ? "longue." : "courte."));        
-        }
         blocks[y] = line;
         std::cin.clear();
         std::cout << "\n";
